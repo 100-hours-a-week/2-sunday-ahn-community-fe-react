@@ -1,7 +1,6 @@
 /* 헤더 박스 */
 .headerbox {
     text-align: center;
-    margin-top: 5%;
     margin-bottom: 20px; /* 텍스트와 로그인 박스 간격 */
 }
 
@@ -17,7 +16,7 @@ h1 {
 
 /* 로그인 박스 */
 .loginbox {
-    background-color: #79D7BE;
+    background-color: #6ed4b9;
     display: flex;
     flex-direction: column;
     align-items: center;

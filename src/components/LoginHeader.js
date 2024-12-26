@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import lottie from "lottie-web";
 import animationData from "../assets/anim.json"; 
-import '../css/Header.css';
-import '../css/Common.css';
+import './css/LoginHeader.css';
+import './css/Common.css';
 
-const Header = () => {
+const LoginHeader = () => {
     const lottieContainer = useRef(null);
 
     useEffect(() => {
@@ -32,4 +32,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default LoginHeader;
