@@ -39,7 +39,3 @@
     color: #F6F4F0
     ;
 }
-.registButton:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px #F6F4F0; /* 포커스 시 아웃라인 효과 */
-}
