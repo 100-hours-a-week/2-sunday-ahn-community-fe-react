@@ -47,3 +47,35 @@
     box-sizing: border-box;
     font-family: 'Pretendard';
 }
+.submitButton {
+    width: 100%;
+    padding: 10px;
+    border-radius: 16px;
+    font-size: 18px;
+    background-color: #ACA0EB;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    font-family: 'Pretendard';
+}
+
+/* 버튼 비활성화 */
+.submitButton:disabled {
+    background-color: #586c83;
+    cursor: not-allowed;
+}
+
+/* hover 효과 */
+.submitButton:hover {
+    background-color: #2E5077;
+}
+
+/* 로그인 링크 스타일 */
+.login {
+    margin-top: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Pretendard';
+}
