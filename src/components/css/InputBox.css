@@ -35,3 +35,15 @@
     visibility: visible; /* 에러 메시지가 나타나도록 변경 */
 }
 
+/* 개별 입력 필드 */
+.inputText input[type="email"],
+.inputText input[type="password"],
+.inputText input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 16px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: 'Pretendard';
+}
