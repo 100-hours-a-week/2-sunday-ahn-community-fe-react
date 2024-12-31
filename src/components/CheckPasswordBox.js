@@ -1,34 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/InputBox.css";
 
-const CheckPasswordBox = ({ onCheckPassword, isPasswordMatch }) => {
+const CheckPasswordBox = ({ onCheckPassword, password, confirmPassword }) => {
     const [errorMessage, setErrorMessage] = useState(""); // 에러 메시지 상태
-    const [errorVisible, setErrorVisible] = useState(false);
+    const [touched, setTouched] = useState(false); // 입력 필드가 터치되었는지 확인
 
-    const handleInputChange = (e) => {
-        const confirmPassword = e.target.value;
-        onCheckPassword(confirmPassword); // 상위 컴포넌트로 입력값 전달
-    };
-
-    const handleValidation = (e) => {
-        const confirmPassword = e.target.value; // 입력값 가져오기
-        console.log("입력된 비밀번호 확인:", confirmPassword);
-        console.log("isPasswordMatch 상태:", isPasswordMatch);
-
-        // 조건별 에러 메시지 처리
-        if (!confirmPassword.trim()) {
-            setErrorVisible(true); // 에러 메시지 표시
+    // 유효성 검증 함수
+    const validateConfirmPassword = () => {
+        if (!confirmPassword?.trim()) {
             setErrorMessage("*비밀번호를 한번 더 입력해주세요.");
-        } else if (!isPasswordMatch) {
-            setErrorVisible(true); // 에러 메시지 표시
+        } else if (confirmPassword !== password) {
             setErrorMessage("*비밀번호가 일치하지 않습니다.");
         } else {
-            setErrorVisible(false); // 에러 메시지 숨김
             setErrorMessage(""); // 에러 없음
         }
-
-        console.log("에러 메시지 상태:", errorMessage);
     };
+
+    const handleInputChange = (e) => {
+        onCheckPassword(e.target.value);
+    };
+
+    // 포커스 해제 시 유효성 검증 
+    const handleBlur = () => {
+        setTouched(true);
+        validateConfirmPassword();
+    };
+
+    useEffect(() => {
+        if (touched) {
+            validateConfirmPassword();
+        }
+    }, [password, confirmPassword, touched]);
 
     return (
         <div className="inputField">
@@ -39,10 +41,11 @@ const CheckPasswordBox = ({ onCheckPassword, isPasswordMatch }) => {
                 name="confirmPassword"
                 placeholder="비밀번호를 한번 더 입력하세요"
                 required
-                onBlur={handleValidation} // 포커스 해제 시 검증
-                onChange={handleInputChange} // 입력값 전달
+                value={confirmPassword || ""}
+                onChange={handleInputChange}
+                onBlur={handleBlur}
             />
-            <div className={`error ${errorVisible ? "visible" : ""}`}>
+            <div className={`error ${errorMessage ? "visible" : ""}`}>
                 {errorMessage}
             </div>
         </div>

@@ -1,38 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/InputBox.css";
+import { validatePassword } from "../utils/validation";
 
-const PasswordBox = ({onPasswordChange}) => {
-    const [errorVisible, setErrorVisible] = useState(false);
-
-    const handleInputChange = (e) => {
-        const password = e.target.value;
-        onPasswordChange(password); // 상위 컴포넌트로 입력값 전달
-        setErrorVisible(!password.trim()); // 입력값이 없으면 에러 표시
+const PasswordBox = ({ value, onChange }) => {
+    const [touched, setTouched] = useState(false); // 입력 필드가 터치되었는지 확인
+    const [errorMessage, setErrorMessage] = useState(""); // 에러 메시지 상태
+    
+    const handleBlur = () => {
+        setTouched(true);
+        setErrorMessage(validatePassword(value));
     };
     
-    const handleValidation = (e) => {
-        const passwordInput = e.target.value;
-        if (!passwordInput) {
-            setErrorVisible(true); // 에러 메시지 표시
-        } else {
-            setErrorVisible(false); // 에러 메시지 숨김
+    useEffect(() => {
+        if (touched) {
+            setErrorMessage(validatePassword(value));
         }
-    };
+    }, [value, touched]);
 
     return (
         <div className="inputField">
             <p>비밀번호</p>
             <input
                 type="password"
-                id="passwordInput"
-                name="password"
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
                 placeholder="비밀번호를 입력하세요"
                 required
-                onBlur={handleValidation} // 포커스 해제 시 검증
-                onChange={handleInputChange} // 입력값 전달
+                onBlur={handleBlur}
             />
-            <div className={`error ${errorVisible ? "visible" : ""}`}>
-                *비밀번호를 입력해주세요.
+            <div className={`error ${errorMessage ? "visible" : ""}`}>
+                {errorMessage}
             </div>
         </div>
     );

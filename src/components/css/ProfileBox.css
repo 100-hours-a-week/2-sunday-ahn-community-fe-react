@@ -12,6 +12,7 @@
     background-color: #BDBDBD;
     overflow: hidden;
     display: flex;
+    margin-top: 20px;
     align-items: center;
     justify-content: center;
 }
@@ -24,4 +25,11 @@
 
 #fileInput{
     display: none;
+}
+
+#profileError {
+    position: absolute;
+    width: 350px;
+    margin-top: -20px;
+    font-size: 14px;
 }
