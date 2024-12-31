@@ -11,10 +11,9 @@
     font-size: 18px;
     background-color: #2E5077; /* 기본 색상 */
     border: none;
-    color: #F6F4F0
-    ;
+    color: #F6F4F0;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 25px;
     border-radius: 16px;
     transition: background-color 0.3s ease; /* 색상 변경 효과 */
 }
@@ -27,8 +26,7 @@
     font-family: "Pretendard";
     font-weight: 700;
     color: #2E5077; 
-    background-color: #F6F4F0
-    ; 
+    background-color: #F6F4F0; 
     border: 2px solid #2E5077; 
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease; /* 효과 추가 */
