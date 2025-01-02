@@ -1,0 +1,12 @@
+@font-face {
+    font-family : 'flightSans';
+    src : url(./font/FlightSans-Title.woff2)
+}
+@font-face {
+    font-family : 'Pretendard';
+    src : url(./font/FlightSans-Regular.woff2)
+}
+html{
+    background-color: #F6F4F0;
+    color: #2E5077;
+}

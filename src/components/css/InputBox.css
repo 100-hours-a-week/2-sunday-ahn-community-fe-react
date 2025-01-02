@@ -1,0 +1,81 @@
+.inputField {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.inputField p {
+    margin: 0;
+    font-family: "Pretendard";
+    color: #2E5077;
+    font-size: 16px;
+}
+
+.inputField input {
+    border-radius: 16px;
+    width: 100%;
+    padding: 10px;
+    font-family: "Pretendard";
+    font-size: 16px;
+    box-sizing: border-box;
+    border-color:  #4DA1A9;
+}
+
+.error {
+    color: rgb(236, 59, 19);
+    font-family: "Pretendard";
+    font-size: 14px;
+    margin: 0;
+    height: 9px; /* 고정 높이로 공간 유지 */
+    visibility: hidden; /* 기본적으로 숨김 */
+}
+
+.error.visible {
+    visibility: visible; /* 에러 메시지가 나타나도록 변경 */
+}
+
+/* 개별 입력 필드 */
+.inputText input[type="email"],
+.inputText input[type="password"],
+.inputText input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 16px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: 'Pretendard';
+}
+.submitButton {
+    width: 100%;
+    padding: 10px;
+    border-radius: 16px;
+    font-size: 18px;
+    background-color: #ACA0EB;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    font-family: 'Pretendard';
+}
+
+/* 버튼 비활성화 */
+.submitButton:disabled {
+    background-color: #586c83;
+    cursor: not-allowed;
+}
+
+/* hover 효과 */
+.submitButton:hover {
+    background-color: #2E5077;
+}
+
+/* 로그인 링크 스타일 */
+.login {
+    margin-top: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Pretendard';
+}

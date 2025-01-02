@@ -1,0 +1,10 @@
+.header{
+    height: 104px;
+    display: flex;
+    width: 250px;
+    align-items: center;
+    justify-content: center; /* 텍스트를 가운데에 */
+    position: relative;
+    margin: 0 auto;
+    padding: 0 20px;
+}
