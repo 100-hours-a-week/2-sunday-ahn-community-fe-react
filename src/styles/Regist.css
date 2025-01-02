@@ -32,4 +32,5 @@ p {
     gap: 15px;
     margin-bottom: 20px;
     text-align: left;
+    align-items: center;
 }

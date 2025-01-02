@@ -117,7 +117,6 @@ const Regist = () => {
                 <h2>회원가입</h2>
                 <form onSubmit={handleFormSubmit}>
                     <div className="inputText">
-                        <p>프로필 사진</p>
                         <ProfileBox onFileChange={handleFileChange} />
                         <EmailBox
                             value={formData.email}

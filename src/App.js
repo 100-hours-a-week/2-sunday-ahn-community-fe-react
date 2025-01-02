@@ -8,16 +8,13 @@ import Posts from "./pages/Posts.js";
 function App() {
   return (
     <BrowserRouter>
-    <div>
     <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/regist" element={<Regist />} />
           <Route path="/posts" element={<Posts />} />
         </Routes>
-    </div>
     </BrowserRouter>
-    
   );
 }
 
