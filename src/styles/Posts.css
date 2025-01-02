@@ -43,9 +43,12 @@ main {
     border-radius: 20px;
     background-color: #87bbbf;
     margin-right: 5px;
+    cursor: pointer;
 }
 .postBtn:hover {
     background-color: #4DA1A9;
+    transition: background-color 0.3s ease, color 0.3s ease; /* 효과 추가 */
+
 
 }
 .postBtn p {

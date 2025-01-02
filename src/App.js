@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/auth/Login.js";
 import Regist from "./pages/auth/Regist.js";
 import Posts from "./pages/Posts.js";
+import EditUserInfo from "./pages/EditUserInfo.js";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/regist" element={<Regist />} />
           <Route path="/posts" element={<Posts />} />
-        </Routes>
+          <Route path="/editUserInfo" element={<EditUserInfo />} />
+          </Routes>
     </BrowserRouter>
   );
 }
