@@ -1,12 +1,16 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import TitleHeader from "../components/TItleHeader";
 import Post from "../components/Post";
-import "../styles/Posts.css"
 import Lottie from "react-lottie";
 import animationData from "../assets/headerBackgroundAnim.json"; // JSON 파일 경로
 import ToggleProfile from "../components/ToggleProfile";
+import "../styles/Posts.css"
 
 const Posts = () => {
+    const navigate = useNavigate();
+
     const defaultOptions = {
         loop: true,
         autoplay: true,
@@ -44,7 +48,7 @@ const Posts = () => {
                     <p id="mainTxt">아무 말 대잔치 <strong>게시판</strong> 입니다.</p>
                 </div>
                 <div class="bnt">
-                    <div class="postBtn" id="postBtn">
+                    <div class="postBtn" id="postBtn" onClick={()=>navigate("/writePost")}>
                         <p><strong>게시물 작성</strong></p>
                     </div>
                 </div>

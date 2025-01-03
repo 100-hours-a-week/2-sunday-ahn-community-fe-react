@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import "../components/css/ToggleProfile.css";
 
 const ToggleProfile = () => {
-    const navigate = useNavigate(); // 네비게이트 훅 사용
-    const [isDropdownVisible, setIsDropdownVisible] = useState(false); // 드롭다운 상태 관리
+    const navigate = useNavigate();
+    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
     const handleToggleDropdown = () => {
-        setIsDropdownVisible(!isDropdownVisible); // 드롭다운 상태 토글
+        setIsDropdownVisible(!isDropdownVisible); 
     };
 
     return (
