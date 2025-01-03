@@ -1,10 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import "../components/css/Modal.css";
 
 const WithdrawModal = ({ onClose }) => {
+    const navigate = useNavigate();
+    
     const confirmDelete = () => {
         alert("회원 탈퇴가 완료되었습니다.");
         onClose(); // 모달 닫기
+        navigate("/login");
     };
 
     return (

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "../../styles/Regist.css";
-import TitleHeader from "../../components/TItleHeader";
 import BackButton from "../../components/BackButton";
 import ProfileBox from "../../components/ProfileBox";
 import EmailBox from "../../components/EmailBox";
