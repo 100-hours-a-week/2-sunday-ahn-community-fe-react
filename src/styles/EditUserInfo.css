@@ -15,7 +15,7 @@
     border-bottom: 2px solid #4DA1A9;
     width: 700px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .editUserInfoHeaders {
     height: 104px;
@@ -137,7 +137,8 @@ input[type="submit"] {
     padding: 10px;
     height: 46;
     border-radius: 30px;          
-    background-color: #4DA1A9;    
+    background-color: #729fd2;    
+    font-size: 13pt;
     color: white;  
     transition: opacity 0.5s ease, visibility 0s 0.5s;
 }
@@ -147,5 +148,6 @@ input[type="submit"] {
     height: 46;
     padding: 10px;
     border-radius: 30px;
-    font-size: 18pt;
 }
+
+/* ------------------ */

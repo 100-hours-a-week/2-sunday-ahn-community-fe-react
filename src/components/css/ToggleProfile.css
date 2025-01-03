@@ -4,6 +4,7 @@
     align-items: center;
     width: 104px;
     height: 104px;
+    cursor: pointer;
 }
 .profileImage {
     width: 100%;

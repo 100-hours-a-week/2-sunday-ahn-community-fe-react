@@ -1,17 +1,23 @@
+import React, { useState } from "react";
 import NicknameBox from "../components/NicknameBox";
 import TitleHeader from "../components/TItleHeader";
 import ToggleProfile from "../components/ToggleProfile";
-import "../styles/EditUserInfo.css"
+import WithdrawModal from "../components/WithdrawModal";
+import "../styles/EditUserInfo.css";
 
 const EditUserInfo = () => {
-    
-    return(
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
+
+    return (
         <div className="editUserInfobox">
             <div className="editUserInfoHeaders">
                 <div className="editUserInfoHeader">
-                    <div className="tmp"> </div>
-                    <TitleHeader/>
-                    <ToggleProfile/>
+                    <div className="tmp"></div>
+                    <TitleHeader />
+                    <ToggleProfile />
                 </div>
             </div>
             <main>
@@ -21,7 +27,12 @@ const EditUserInfo = () => {
                         <p>프로필 사진</p>
                         <div className="profileContainer">
                             <div className="box2" id="profileBox">
-                                <img className="profile2" id="profileImagePreview" src="" alt=""/>
+                                <img
+                                    className="profile2"
+                                    id="profileImagePreview"
+                                    src=""
+                                    alt=""
+                                />
                                 <button className="editProfile" id="editProfile">변경</button>
                             </div>
                             <input type="file" id="fileInput" accept="image/*" />
@@ -34,18 +45,24 @@ const EditUserInfo = () => {
                         </div>
                     </div>
                     <div className="editUserInfoContent">
-                        <NicknameBox/>
+                        <NicknameBox />
                     </div>
                 </div>
                 <div className="bottom">
-                    <input type="submit" className="submitButton" value="수정하기"/>
-                    <button className="deleteMember" onclick="openModal()">회원 탈퇴</button>
+                    <input type="submit" className="submitButton" value="수정하기" />
+                    <button className="deleteMember" onClick={openModal}>
+                        회원 탈퇴
+                    </button>
                     <div className="finish">
                         <div className="finishBtn">수정완료</div>
                     </div>
                 </div>
             </main>
-            
+            {isModalOpen && (
+                <div className="modalPopup">
+                    <WithdrawModal onClose={closeModal} />
+                </div>
+            )}
         </div>
     );
 };
