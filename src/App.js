@@ -5,7 +5,9 @@ import Login from "./pages/auth/Login.js";
 import Regist from "./pages/auth/Regist.js";
 import Posts from "./pages/Posts.js";
 import EditUserInfo from "./pages/EditUserInfo.js";
+import EditPassword from "./pages/EditPassword.js";
 import WritePost from "./pages/WritePost.js";
+import EditPost from "./pages/EditPost.js";
 
 function App() {
   return (
@@ -16,7 +18,9 @@ function App() {
           <Route path="/regist" element={<Regist />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/editUserInfo" element={<EditUserInfo />} />
+          <Route path="/editPassword" element={<EditPassword />} />
           <Route path="/writePost" element={<WritePost />} />
+          <Route path="/editPost" element={<EditPost />} />
           </Routes>
     </BrowserRouter>
   );

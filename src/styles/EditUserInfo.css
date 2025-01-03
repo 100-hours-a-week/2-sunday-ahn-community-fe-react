@@ -151,3 +151,12 @@ input[type="submit"] {
 }
 
 /* ------------------ */
+.editPasswordBox {
+    display: block;
+    align-items: center;
+    justify-items: center;
+}
+.editPasswordBox .bottom{
+    margin-top: 30px;
+    width: 350px;
+}
