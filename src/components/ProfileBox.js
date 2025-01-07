@@ -46,10 +46,11 @@ const ProfileBox = ({ onFileChange }) => {
     };
 
     return (
-        <div className="profileContainer">
+        <div className="profileContainer2">
+            <p>프로필 사진</p>
             {errorMessage && <div className="error visible" id = "profileError">{errorMessage}</div>}
             <div
-                className="box"
+                className="box2"
                 id="profileBox"
                 onClick={handleBoxClick}
                 onBlur={handleBlur}

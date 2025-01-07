@@ -58,12 +58,15 @@ const Login = () => {
                     onChange={(value) => handleInputChange("password", value)}
                 />
                 {errorMessage && <div className="error">{errorMessage}</div>}
-                <button className="submitButton" onClick={handleLoginClick}>
-                    로그인
-                </button>
-                <button className="registButton" onClick={handleRegistClick}>
-                    회원가입
-                </button>
+                <div>
+                    <button className="submitButton" onClick={handleLoginClick}>
+                        로그인
+                    </button>
+                    <button className="registButton" onClick={handleRegistClick}>
+                        회원가입
+                    </button>
+                </div>
+                
             </div>
         </div>
     );

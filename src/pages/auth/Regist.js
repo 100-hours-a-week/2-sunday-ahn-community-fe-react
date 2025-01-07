@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "../../styles/Regist.css";
-import TitleHeader from "../../components/TItleHeader";
 import BackButton from "../../components/BackButton";
 import ProfileBox from "../../components/ProfileBox";
 import EmailBox from "../../components/EmailBox";
@@ -110,14 +109,15 @@ const Regist = () => {
             <div className="headerContent">
                 <div className="box1">
                     <BackButton />
-                    <TitleHeader />
+                    <h1>
+                        SUNDAY의 <br /> 아무 말 대잔치
+                    </h1>
                 </div>
             </div>
             <main>
                 <h2>회원가입</h2>
                 <form onSubmit={handleFormSubmit}>
                     <div className="inputText">
-                        <p>프로필 사진</p>
                         <ProfileBox onFileChange={handleFileChange} />
                         <EmailBox
                             value={formData.email}

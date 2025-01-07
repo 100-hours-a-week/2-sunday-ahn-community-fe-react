@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 5px;
     margin-top: 20px;
+    width: 350px;
 }
 
 .inputField p {
@@ -52,7 +53,7 @@
     padding: 10px;
     border-radius: 16px;
     font-size: 18px;
-    background-color: #ACA0EB;
+    background-color: #2E5077;
     border: none;
     color: white;
     cursor: pointer;

@@ -9,6 +9,9 @@
     display: flex;
     align-items: center;
 }
+.box1 h1 {
+    margin-left: 45px;
+}
 main {
     max-width: 392px;
     margin: auto;
@@ -32,4 +35,5 @@ p {
     gap: 15px;
     margin-bottom: 20px;
     text-align: left;
+    align-items: center;
 }

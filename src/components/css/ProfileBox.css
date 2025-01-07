@@ -1,11 +1,11 @@
 /* Profile container */
-.profileContainer {
+.profileContainer2 {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.box {
+.box2 {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -16,7 +16,9 @@
     align-items: center;
     justify-content: center;
 }
-
+.profileContainer2 p {
+    width: 350px;
+}
 .profile {
     width: 100%;
     height: 100%;
@@ -28,8 +30,8 @@
 }
 
 #profileError {
-    position: absolute;
-    width: 350px;
-    margin-top: -20px;
+    /* position: absolute; */
+    width: 300px;
+    margin-top: -10px;
     font-size: 14px;
 }

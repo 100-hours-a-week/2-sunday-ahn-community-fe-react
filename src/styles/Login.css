@@ -1,7 +1,11 @@
 .inputFields {
-    margin-top: 280px;
+    margin-top: 270px;
     position: relative;
-    width: 300px;
+    align-items: center;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    /* background-color: #2E5077; */
 }
 /* 로그인 버튼 스타일 */
 .submitButton {
@@ -20,7 +24,7 @@
 /* 회원가입 버튼 */
 .registButton {
     border-radius: 16px;
-    width: 50%;
+    width: 150px;
     padding: 10px;
     font-size: 18px;
     font-family: "Pretendard";

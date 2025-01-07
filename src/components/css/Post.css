@@ -5,6 +5,7 @@
     border-radius: 16px; /*모서리둥글게*/
     border-color: #4DA1A9;
     margin-bottom: 10px;
+    cursor: pointer;
     box-shadow: 3px 3px 3px #79D7BE;
 }
 .title {
@@ -59,7 +60,6 @@
     flex-direction: row; 
     align-items: center; 
     justify-content: center;
-    height: 30px;
 }
 .profile {
     width: 100%;
