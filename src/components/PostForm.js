@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import "../components/css/PostForm.css";
-
 const PostForm = () => {
-    const [content, setContent] = useState("");
     const [file, setFile] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
-    const maxLength = 500; // 내용 글자수 최대 제한
-
-    const handleContentChange = (event) => {
-        const value = event.target.value;
-        if (value.length <= maxLength) {
-            setContent(value);
-        }
-    };
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
+    const maxLength = 2000; // 내용 글자수 최대 제한
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
@@ -25,18 +18,35 @@ const PostForm = () => {
         }
     };
 
+    const handleTitleChange = (event) => {
+        setTitle(event.target.value);
+    };
+
+    const handleContentChange = (event) => {
+        if (event.target.value.length <= maxLength) {
+            setContent(event.target.value);
+        }
+    };
+
     return (
         <div className="postFormBox">
             <div className="postFormContent">
-                <p>제목*</p>
+                
+                <div className="charCount">
+                    <p>제목* ({title.length} / 26 글자)</p>
+                    
+                </div>
                 <input
                     type="text"
                     id="title"
                     name="title"
                     placeholder="제목을 입력해주세요.(최대 26글자)"
                     maxLength="26"
+                    value={title}
+                    onChange={handleTitleChange}
                     required
                 />
+                
             </div>
             <div className="postFormContent">
                 <p>내용* ({content.length}/{maxLength} 글자)</p> {/* 글자수 표시 */}

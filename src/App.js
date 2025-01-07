@@ -8,6 +8,7 @@ import EditUserInfo from "./pages/EditUserInfo.js";
 import EditPassword from "./pages/EditPassword.js";
 import WritePost from "./pages/WritePost.js";
 import EditPost from "./pages/EditPost.js";
+import ViewPost from "./pages/ViewPost.js";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/editPassword" element={<EditPassword />} />
           <Route path="/writePost" element={<WritePost />} />
           <Route path="/editPost" element={<EditPost />} />
+          <Route path="/viewPost" element={<ViewPost />} />
           </Routes>
     </BrowserRouter>
   );

@@ -13,10 +13,12 @@
     width: 100%;
     padding: 10px;
     font-size: 16px;
+    color: #2E5077;
     border-radius: 16px;
 }
 .postFormContent textarea{
-    border: 1px solid #ccc;
+    border: 1px solid #F6F4F0;
+    resize: none; /* 크기 조정 비활성화 */
     box-sizing: border-box;
 }
 input[type="file"]{

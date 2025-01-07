@@ -1,0 +1,338 @@
+
+.user_detail .profileContainer .box .profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.user_detail .profileContainer .box {
+    width: 36px;
+    height: 36px; 
+    border-radius: 50%;
+    overflow: hidden;
+}
+/* ----------- 메인 -------------- */
+.onePost {
+    margin-bottom: 10px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+.titleTxt_detail {
+    width: 100%; 
+    height: 40px; 
+    margin: 8px;
+    margin-left: 20px;
+    font-size: 15pt;
+    text-align: left; 
+    display: inline-block;
+}
+#postDate {
+    width: 300px;
+    text-align: right;
+    margin-right: 20px;
+}
+/* 작성자 */
+.user_detail {
+    display: flex;
+    margin: 15px;
+    text-align: center;
+    justify-content: left;
+    align-items: center;
+    border-bottom: 1px solid #00000029; /* 하단 테두리 */
+}
+.user_detail .profileContainer {
+    display: flex; 
+    margin: 8px;
+    flex-direction: left; 
+    align-items: center; 
+}
+.user_detail .userInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    
+}
+/* --------------- 게시물 --------------- */
+.user_detail .userInfo .nickname {
+    display: inline-block;
+    margin: 0px;
+    text-align: left;
+    justify-content: center;
+}
+.user_detail .userInfo .nickname p {
+    display: inline;
+    margin-right: 20px;
+}
+
+.content_detail{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #00000029; /* 하단 테두리 */
+}
+.content_detail .imgBox {
+    width: 544px;
+    height: 306px;
+    overflow: hidden;
+    margin:0 auto;
+}
+.content_detail .imgBox .postImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.content_detail .contentTxt {
+    margin-top: 20px;
+    width: 544px;
+    word-wrap: break-word; /* 단어가 길 경우 줄바꿈 */
+    word-break: break-all; /* 글자 단위로 줄바꿈 */
+    white-space: normal;
+    text-align: left;
+}
+#text {
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21.15px;
+    text-align: left;
+    width: 100%;
+    height: 100%; 
+    white-space: normal;
+}
+/* postElement */
+.contentElement_detail {
+    display: flex;
+    width: 400px;
+    margin: 20px;
+    align-items: center;
+    justify-content: center; /* 요소들을 중앙에 배치 */
+    gap: 10px; /* 요소 간 간격 설정 */
+}
+.contentElement_detail .elements {
+    width: 116px;
+    height: 77px;
+    background-color: #79d7beda;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 요소 내부 텍스트 가운데 정렬 */
+    align-items: center; /* 요소 내부 텍스트 가운데 정렬 */
+}
+#likesCount {
+    cursor: pointer;
+}
+.contentElement_detail .elements p {
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 25.04px;
+    text-align: center;
+    margin-top: 3px;
+    margin: 0; /* 기본 마진 제거 */
+}
+/* ---------- 댓글입력 창 ---------------- */
+.commentInputBox .inputComment {
+    margin-top: 20px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background-color: #FFF;
+}
+.commentInputBox #inputComment {
+    width: 500px;
+    border: none;
+    height: 1200px;
+    border-bottom: 1px solid #00000029; /* 하단 테두리 */
+    text-align: left;
+    font-size: 16px;
+    margin: 15px;
+    resize: none; /* 크기 조정 비활성화 */
+    color: #2E5077;
+}
+/* 글자수 카운트 */
+.commentCharCount {
+    width: 500px;
+    text-align: right;
+    font-size: 14px;
+    color: #2E5077;
+    margin-bottom: 5px;
+}
+.inputComment2 {
+    display: flex;
+    width: 500px;
+    align-items: center;
+    justify-content: right;
+    margin-bottom: 15px;
+}
+/* 댓글등록 버튼 */
+.commentInputBox .commentBtn {
+    border-radius: 12px;
+    width: 105px;
+    height: 39px;
+    background-color: #79D7BE;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    line-height: 25.04px;
+    text-align: center;
+}
+/* ---------- 수정/삭제 버튼 ------------- */
+.edit_postDetail{
+    display: flex;
+    margin-left: auto; /* 오른쪽으로 이동 */
+}
+.edit_postDetail .bnt{
+    background-color: #79D7BE;
+    font-size: 14px;
+    color: #F6F4F0;
+    display: flex;
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    border-radius: 8px;
+    border: 2px solid #2e50774d;
+    margin: 5px;
+    cursor: pointer;
+}
+/* ------------ 댓글 ---------------------- */
+.comments {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 댓글을 시작 부분에 정렬 */
+    width: 100%; 
+}
+.comment {
+    display: flex;
+    margin-top: 10px;
+    width: 100%; /* 댓글이 부모 너비를 전체 차지 */
+    align-items: flex-start; /* 상단 정렬 */
+    justify-content: space-between; /* 요소 사이에 공간 배치 */
+    padding: 10px 0; /* 위아래 여백 추가 */
+}
+.profileSection {
+    display: flex;
+}
+.profileSection .normalProfile {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+    justify-content: center;
+}
+.commentAuthorInfoHeader {
+    display: flex;
+    justify-content: center;
+}
+
+.userInfo2 {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* 댓글 내용이 가능한 한 많은 공간을 차지하도록 설정 */
+}
+.author {
+    display: flex;
+    width: 340px;
+    height: 35px;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+.author #date {
+    text-align: center;    
+}
+.commentContents{
+    text-align: left;
+    position: relative;
+    margin-left: 46px;
+    width: 90%;
+}
+
+/* ---------------------------------- */
+
+.modalDiv, .modalDiv2 {
+    font-family: Arial, sans-serif;
+    background-color: #F4F5F7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 모달 배경 */
+.modal-overlay, .modal-overlay2 {
+    display: none; /* 처음에는 숨김 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+/* 모달 창 스타일 */
+.modal {
+    width: 300px;
+    height: 150px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 모달 텍스트 */
+.modal h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.modal p {
+    font-size: 14px;
+    color: #666;
+    margin-top: 0;
+}
+
+/* 버튼 스타일 */
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    background-color: none;
+}
+
+.modal-button {
+    width: 127px;
+    height: 44px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-button.cancel {
+    background-color: #242424;
+    color: #FFFFFF;
+}
+
+.modal-button.confirm {
+    background-color: #C4A5FA;
+    color: #000000;
+}
+
