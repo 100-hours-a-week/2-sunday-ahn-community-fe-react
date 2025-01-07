@@ -8,7 +8,7 @@ const Post = () => {
             <div class="title">
                 <div class="titleTxt">
                     {/* <p><strong>${post.title}</strong></p> */}
-                    <p><strong>SampleTitle</strong></p>
+                    <p><strong>제목은스물여섯자까지가능합니다알고계신가요다행이네요</strong></p>
                 </div>
                 <div class="postElement">
                     <div class="ele1">
@@ -31,7 +31,7 @@ const Post = () => {
                 </div>
                 <div class="nickname">
                     {/* <p id="userTxt">${post.author.nickname}</p> */}
-                    <p id="userTxt">tester</p>
+                    <p id="userTxt">사용자의이름은열글자</p>
                 </div>
             </div>
         </div>

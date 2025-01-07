@@ -4,7 +4,9 @@
     flex-direction: column;
     align-items: center;
 }
-
+.placeholder {
+    font-size: 30px;
+}
 .box2 {
     width: 150px;
     height: 150px;
@@ -30,8 +32,8 @@
 }
 
 #profileError {
-    /* position: absolute; */
     width: 300px;
+    margin-left: -50px;
     margin-top: -10px;
     font-size: 14px;
 }
