@@ -1,5 +1,5 @@
 
-const Comment = () => {
+const Comment = ({ onDelete }) => {
     // 샘플 데이터
     const comment = {
         author: {
@@ -40,7 +40,7 @@ const Comment = () => {
                                 </p>
                             </div>
                         </button>
-                        <button className="bnt" id="deletePostBtn">
+                        <button className="bnt" id="deletePostBtn"onClick={onDelete}>
                             <div className="postEditBtn">
                                 <p>
                                     <strong>삭제</strong>

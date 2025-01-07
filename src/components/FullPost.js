@@ -4,7 +4,7 @@ import Lottie from "react-lottie";
 import animationData from "../assets/likesLottie.json"; // 좋아요 애니메이션 JSON
 import imageUrl from "../assets/sample.png";
 
-const FullPost = () => {
+const FullPost = ({ onDeletePost }) => {
     // 샘플 데이터
     const [postData, setPostData] = useState({
         title: "게시물 제목 예시",
@@ -70,21 +70,21 @@ const FullPost = () => {
                     </div>
                     {/* 수정 / 삭제 버튼 */}
                     <div className="edit_postDetail">
-                        <button className="bnt" id="editPostBtn">
-                            <div className="postEditBtn">
-                                <p>
-                                    <strong>수정</strong>
-                                </p>
-                            </div>
-                        </button>
-                        <button className="bnt" id="deletePostBtn">
-                            <div className="postEditBtn">
-                                <p>
-                                    <strong>삭제</strong>
-                                </p>
-                            </div>
-                        </button>
+                <button className="bnt" id="editPostBtn">
+                    <div className="postEditBtn">
+                        <p>
+                            <strong>수정</strong>
+                        </p>
                     </div>
+                </button>
+                <button className="bnt" id="deletePostBtn" onClick={onDeletePost}>
+                    <div className="postEditBtn">
+                        <p>
+                            <strong>삭제</strong>
+                        </p>
+                    </div>
+                </button>
+            </div>
                 </div>
             </div>
             <div className="content_detail">
