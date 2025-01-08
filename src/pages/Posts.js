@@ -44,8 +44,8 @@ const Posts = () => {
             </div>
             <main>
                 <div class="mainTxt">
-                    <p id="mainTxt">안녕하세요,</p>
-                    <p id="mainTxt">아무 말 대잔치 <strong>게시판</strong> 입니다.</p>
+                    <p id="mainTxt"></p>
+                    <p id="mainTxt">" 잡담은 <strong>경쟁력</strong>이다! "</p>
                 </div>
                 <div class="bnt">
                     <div class="postBtn" id="postBtn" onClick={()=>navigate("/writePost")}>
