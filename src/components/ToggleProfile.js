@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../components/css/ToggleProfile.css";
+import sampleProfile from "../assets/user.png"
 
 const ToggleProfile = () => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const ToggleProfile = () => {
     return (
         <div className="normalProfile">
             <div className="profileHeaderBox" onClick={handleToggleDropdown}>
-                <img className="profileImage" id="profileImage" alt="프로필 사진" />
+                <img className="profileImage" id="profileImage" alt="프로필 사진" src={sampleProfile} />
             </div>
             {/* 드롭다운 메뉴 */}
             <div

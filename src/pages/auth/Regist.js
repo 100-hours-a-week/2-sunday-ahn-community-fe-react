@@ -19,7 +19,9 @@ const Regist = () => {
         nickname: "",
     });
     const [isEmailDuplicate, setIsEmailDuplicate] = useState(false); // 이메일 중복 여부
-    const [isFormValid, setIsFormValid] = useState(false); // 폼 유효성 상태
+    const [emailErrorMessage, setEmailErrorMessage] = useState(""); // 이메일 에러메세지
+
+    const [isFormValid, setIsFormValid] = useState(false); // 폼 유효 상태
 
     const handleInputChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
@@ -40,14 +42,16 @@ const Regist = () => {
             if (!response.ok) {
                 const result = await response.json();
                 setIsEmailDuplicate(true);
-                return result.message || "*중복된 이메일입니다.";
+                setEmailErrorMessage(result.message);
             }
-            setIsEmailDuplicate(false);
-            return ""; // 중복 아님
+            else{
+                setIsEmailDuplicate(false);
+                setEmailErrorMessage(""); // 중복아님
+            }
         } catch (err) {
             console.error("이메일 중복 검사 오류:", err);
             setIsEmailDuplicate(true);
-            return "*서버와의 연결에 문제가 발생했습니다.";
+            setEmailErrorMessage("*서버와의 연결에 문제가 발생했습니다.");
         }
     };
 
@@ -70,27 +74,59 @@ const Regist = () => {
     // 폼 제출
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-
-        const emailError = await checkEmailDuplicate(formData.email);
-        if (emailError) {
-            alert(emailError);
-            return;
-        }
-
-        const formDataObj = new FormData();
-        formDataObj.append("email", formData.email);
-        formDataObj.append("password", formData.password);
-        formDataObj.append("nickname", formData.nickname);
+    
+        // const emailError = await checkEmailDuplicate(formData.email);
+        // if (emailError) {
+        //     alert(emailError);
+        //     return;
+        // }
+    
+        let profileImageUrl = "";
         if (formData.profileImage) {
-            formDataObj.append("profileImage", formData.profileImage);
+            try {
+                // Pre-signed URL 요청
+                const presignedResponse = await fetch("http://localhost:3000/auth/uploadProfile", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        filename: formData.profileImage.name,
+                        contentType: formData.profileImage.type,
+                    }),
+                });
+    
+                if (!presignedResponse.ok) {
+                    throw new Error("Pre-signed URL 요청 실패");
+                }
+    
+                const { presignedUrl, fileUrl } = await presignedResponse.json();
+    
+                // S3에 파일 업로드
+                await fetch(presignedUrl, {
+                    method: "PUT",
+                    headers: { "Content-Type": formData.profileImage.type },
+                    body: formData.profileImage,
+                });
+    
+                profileImageUrl = fileUrl; // 업로드 완료 후 URL 저장
+            } catch (error) {
+                console.error("프로필 이미지 업로드 실패:", error);
+                alert("이미지 업로드에 실패했습니다.");
+                return;
+            }
         }
-
+    
         try {
             const response = await fetch("http://localhost:3000/auth/regist", {
                 method: "POST",
-                body: formDataObj,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email: formData.email,
+                    password: formData.password,
+                    nickname: formData.nickname,
+                    profileImage: profileImageUrl,
+                }),
             });
-
+    
             if (response.ok) {
                 alert("회원가입 성공!");
                 navigate("/login");
@@ -122,6 +158,8 @@ const Regist = () => {
                         <EmailBox
                             value={formData.email}
                             onChange={(value) => handleInputChange("email", value)}
+                            onBlur={() => checkEmailDuplicate(formData.email)}
+                            errorMessage={emailErrorMessage}
                         />
                         <PasswordBox
                             value={formData.password}
