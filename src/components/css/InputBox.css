@@ -34,6 +34,8 @@
 
 .error.visible {
     visibility: visible; /* 에러 메시지가 나타나도록 변경 */
+    font-family: "Pretendard";
+    font-size: 14px;
 }
 
 /* 개별 입력 필드 */

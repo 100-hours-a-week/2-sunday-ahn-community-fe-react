@@ -9,10 +9,10 @@
     box-shadow: 3px 3px 3px #79D7BE;
 }
 .title {
-    height: 101px;
+    height: 120px;
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid #4DA1A9 /* 하단 테두리 */
+    border-bottom: 2px solid #4da1a94e /* 하단 테두리 */
 
 }
 .titleTxt {
@@ -23,7 +23,6 @@
     font-size: 15pt;
     text-align: left; 
     white-space: nowrap; /* 줄 바꿈 방지 */
-    overflow: hidden; /* 넘치는 내용 숨기기 */
     display: inline-block;
 }
 .postElement, .ele1{
@@ -43,8 +42,9 @@
 /* 작성자 */
 .user {
     display: flex;
-    margin: 15px;
-    text-align: center;
+    margin: 5px;
+    width: 300px;
+    margin-left: 10px;
 }
 .user .nickname {
     margin-left: 10px;
@@ -70,5 +70,6 @@
     width: 36px;
     height: 36px; 
     border-radius: 50%;
+    background-color: #79D7BE;
     overflow: hidden;
 }
