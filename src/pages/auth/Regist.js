@@ -74,13 +74,7 @@ const Regist = () => {
     // 폼 제출
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-    
-        // const emailError = await checkEmailDuplicate(formData.email);
-        // if (emailError) {
-        //     alert(emailError);
-        //     return;
-        // }
-    
+
         let profileImageUrl = "";
         if (formData.profileImage) {
             try {
@@ -103,7 +97,10 @@ const Regist = () => {
                 // S3에 파일 업로드
                 await fetch(presignedUrl, {
                     method: "PUT",
-                    headers: { "Content-Type": formData.profileImage.type },
+                    headers: { 
+                        "Content-Type": formData.profileImage.type,
+                        "x-amz-acl": "public-read"
+                    },
                     body: formData.profileImage,
                 });
     

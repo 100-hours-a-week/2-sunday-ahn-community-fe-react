@@ -123,6 +123,15 @@
 #likesCount {
     cursor: pointer;
 }
+/* 좋아요 눌렀을떄 */
+.elements#likesCount {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.elements#likesCount.liked {
+    background-color: #2E5077;
+    color: #F6F4F0;
+}
+
 .contentElement_detail .elements p {
     font-family: "Pretendard";
     font-size: 16px;

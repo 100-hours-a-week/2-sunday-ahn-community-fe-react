@@ -23,14 +23,14 @@ const Login = () => {
         try {
             const response = await fetch("http://localhost:3000/auth/login", {
                 method: "POST",
+                credentials: "include",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
             });
 
             if (response.ok) {
-                const result = await response.json();
-                alert("로그인 성공!");
-                navigate("/"); // 로그인 성공 후 이동할 경로
+                // const result = await response.json();
+                navigate("/posts"); // 로그인 성공 후 이동할 경로
             } else {
                 const error = await response.json();
                 setErrorMessage(error.message || "로그인 실패. 다시 시도해주세요.");
@@ -57,7 +57,9 @@ const Login = () => {
                     value={formData.password}
                     onChange={(value) => handleInputChange("password", value)}
                 />
-                {errorMessage && <div className="error">{errorMessage}</div>}
+                <div className={`error ${errorMessage ? "visible" : ""}`}>
+                {errorMessage}
+                </div>
                 <div>
                     <button className="submitButton" onClick={handleLoginClick}>
                         로그인
