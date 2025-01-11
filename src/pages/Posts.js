@@ -33,6 +33,12 @@ const Posts = () => {
                 credentials: "include",
             });
 
+            if (response.status === 401) {
+                alert("로그인이 필요합니다.");
+                navigate("/login"); // 401 오류 시 로그인 페이지로 리다이렉션
+                return; // 더 이상 진행하지 않음
+            }
+
             if (!response.ok) throw new Error("게시물을 가져오는 데 실패했습니다.");
 
             const { data } = await response.json();
