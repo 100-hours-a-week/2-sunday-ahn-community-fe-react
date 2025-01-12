@@ -65,10 +65,8 @@ const Posts = () => {
                 navigate("/login"); // 세션 정보가 없으면 로그인 페이지로 이동
             }
         };
-
         loadData();
     }, []);
-
     return(
         <div className="postsBox">
                 <Lottie

@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import "../components/css/FullPost.css";
 import Lottie from "react-lottie";
 import animationData from "../assets/likesLottie.json"; // 좋아요 애니메이션 JSON
-import postSampleImg from "../assets/sample.png"
+import {formatDateToCustomFormat} from "../utils/formatDate";
+import sampleProfile from "../assets/user.png";
 
 const FullPost = ({ post, onDeletePost, userId }) => {
     const {
         postId,
         title,
         author,
-        postDate,
+        date,
         content,
-        postImage,
+        imageUrl,
         likes: initialLikesCount,
         views,
         commentsCnt,
     } = post;
-
     console.log(post);
     const [likesCount, setLikesCount] = useState(initialLikesCount);
     const [showLikeAnimation, setShowLikeAnimation] = useState(false);
@@ -78,7 +78,7 @@ const FullPost = ({ post, onDeletePost, userId }) => {
                         <img
                             className="profile"
                             id="authorProfileImage"
-                            src={author.profileImage}
+                            src={author.profileImg || sampleProfile}
                             alt="작성자 프로필"
                         />
                     </div>
@@ -87,7 +87,7 @@ const FullPost = ({ post, onDeletePost, userId }) => {
                     <div className="nickname">
                         <p id="userNickname">{author.nickname}</p>
                         <br />
-                        <p id="postDate">{postDate}</p>
+                        <p id="date">{formatDateToCustomFormat(date)}</p>
                     </div>
                     {author.userId === userId && (
                         <div className="edit_postDetail">
@@ -110,14 +110,16 @@ const FullPost = ({ post, onDeletePost, userId }) => {
                 </div>
             </div>
             <div className="content_detail">
-                <div className="imgBox">
-                    <img
-                        className="postImg"
-                        id="postImage"
-                        src={postImage || postSampleImg}
-                        alt="게시물 이미지"
-                    />
-                </div>
+                {imageUrl && (
+                    <div className="imgBox">
+                        <img
+                            className="postImg"
+                            id="postImage"
+                            src={imageUrl}
+                            alt="게시물 이미지"
+                        />
+                    </div>
+                )}
                 <div className="contentTxt" id="postContent">
                     {content}
                 </div>

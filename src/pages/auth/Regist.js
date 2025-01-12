@@ -99,11 +99,10 @@ const Regist = () => {
                     method: "PUT",
                     headers: { 
                         "Content-Type": formData.profileImage.type,
-                        "x-amz-acl": "public-read"
                     },
                     body: formData.profileImage,
                 });
-    
+                console.log("빋은url:", presignedUrl);
                 profileImageUrl = fileUrl; // 업로드 완료 후 URL 저장
             } catch (error) {
                 console.error("프로필 이미지 업로드 실패:", error);

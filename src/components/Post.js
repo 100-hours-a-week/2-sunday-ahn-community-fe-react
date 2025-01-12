@@ -1,5 +1,5 @@
 import "./css/Post.css";
-import sampleImage from "../assets/sample.png";
+import sampleImage from "../assets/user.png";
 import {formatDateToCustomFormat} from "../utils/formatDate";
 
 

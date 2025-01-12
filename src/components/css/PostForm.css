@@ -7,17 +7,25 @@
 }
 .postFormContent {
     width: 500px;
+    margin-bottom: 15px;
 }
+#submitBnt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .postFormContent input[type="text"], .postFormContent textarea{
     font-family: 'Pretendard';
     width: 100%;
     padding: 10px;
     font-size: 16px;
     color: #2E5077;
+    border: 1px solid #4da1a9c3;
     border-radius: 16px;
 }
 .postFormContent textarea{
-    border: 1px solid #F6F4F0;
+    border: 1px solid #4da1a9c3;
     resize: none; /* 크기 조정 비활성화 */
     box-sizing: border-box;
 }

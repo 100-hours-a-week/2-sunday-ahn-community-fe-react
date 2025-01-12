@@ -10,7 +10,6 @@ const ToggleProfile = ({ profileImage }) => {
     const handleToggleDropdown = () => {
         setIsDropdownVisible(!isDropdownVisible);
     };
-
     return (
         <div className="normalProfile">
             <div className="profileHeaderBox" onClick={handleToggleDropdown}>

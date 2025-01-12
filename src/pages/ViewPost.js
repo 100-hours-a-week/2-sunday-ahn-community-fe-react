@@ -16,7 +16,6 @@ const ViewPost = () => {
 
     const location = useLocation();
     const postId = new URLSearchParams(location.search).get("postId");
-    console.log("포스트아이디", postId);
 
     const [user, setUser] = useState(null); // 현재 사용자 정보
     const [post, setPost] = useState(null); // 게시물 정보

@@ -1,12 +1,26 @@
 import React, { useState } from "react";
 import "../components/css/PostForm.css";
-const PostForm = () => {
+
+const PostForm = ({ onSubmit }) => {
     const [file, setFile] = useState(null);
-    const [errorMessage, setErrorMessage] = useState("");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const maxLength = 2000; // 내용 글자수 최대 제한
 
+    // 제목 변경 핸들러
+    const handleTitleChange = (event) => {
+        setTitle(event.target.value);
+    };
+
+    // 내용 변경 핸들러
+    const handleContentChange = (event) => {
+        if (event.target.value.length <= maxLength) {
+            setContent(event.target.value);
+        }
+    };
+
+    // 파일 변경 핸들러
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
         if (selectedFile) {
@@ -14,27 +28,26 @@ const PostForm = () => {
             setErrorMessage(""); // 에러 메시지 초기화
         } else {
             setFile(null);
-            setErrorMessage("*이미지를 선택해주세요.");
         }
     };
 
-    const handleTitleChange = (event) => {
-        setTitle(event.target.value);
-    };
+    // 폼 제출 핸들러
+    const handleSubmit = (event) => {
+        event.preventDefault();
 
-    const handleContentChange = (event) => {
-        if (event.target.value.length <= maxLength) {
-            setContent(event.target.value);
+        if (!title.trim() || !content.trim()) {
+            setErrorMessage("*제목과 내용을 모두 입력해주세요.");
+            return;
         }
+
+        onSubmit({ title, content, file });
     };
 
     return (
-        <div className="postFormBox">
+        <form className="postFormBox" onSubmit={handleSubmit}>
             <div className="postFormContent">
-                
                 <div className="charCount">
                     <p>제목* ({title.length} / 26 글자)</p>
-                    
                 </div>
                 <input
                     type="text"
@@ -46,19 +59,18 @@ const PostForm = () => {
                     onChange={handleTitleChange}
                     required
                 />
-                
             </div>
             <div className="postFormContent">
-                <p>내용* ({content.length}/{maxLength} 글자)</p> {/* 글자수 표시 */}
+                <p>내용* ({content.length} / {maxLength} 글자)</p>
                 <textarea
                     id="content"
                     name="content"
                     placeholder="내용을 입력해주세요."
                     rows="10"
                     value={content}
-                    onChange={handleContentChange} // 글자수 제한 처리
+                    onChange={handleContentChange}
                     required
-                ></textarea>
+                />
             </div>
             <div className="postFormContent">
                 {errorMessage && <div id="errorMessage" className="error">{errorMessage}</div>}
@@ -67,10 +79,13 @@ const PostForm = () => {
                     type="file"
                     id="file"
                     accept="image/*"
-                    onChange={handleFileChange} // 파일 변경 시 처리
+                    onChange={handleFileChange}
                 />
             </div>
-        </div>
+            <div className="postFormContent" id="submitBnt">
+                <button type="submit" className="submitButton">완료</button>
+            </div>
+        </form>
     );
 };
 
