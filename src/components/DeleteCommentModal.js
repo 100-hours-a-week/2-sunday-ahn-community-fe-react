@@ -1,11 +1,25 @@
 import React from "react";
 import "../components/css/Modal.css";
 
-const DeleteCommentModal = ({ onClose, commentId }) => {
-    
-    const confirmDelete = () => {
-        alert("댓글 삭제가 완료되었습니다.");
-        onClose(); // 모달 닫기
+const DeleteCommentModal = ({ onClose, commentId, onDeleted }) => {
+    const confirmDelete = async () => {
+        try {
+            // 서버로 DELETE 요청 전송
+            const response = await fetch(`http://localhost:3000/comments/${commentId}`, {
+                method: "DELETE",
+                credentials: "include", // 인증 쿠키 포함
+            });
+
+            if (!response.ok) {
+                throw new Error("댓글 삭제 실패");
+            }
+
+            onDeleted(); // 부모 컴포넌트에 삭제 완료 알림
+            onClose(); // 모달 닫기
+        } catch (error) {
+            console.error("댓글 삭제 오류:", error.message);
+            alert("댓글 삭제 중 문제가 발생했습니다. 다시 시도해주세요.");
+        }
     };
 
     return (

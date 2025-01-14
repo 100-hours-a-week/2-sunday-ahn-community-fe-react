@@ -1,3 +1,5 @@
+import {formatDateToCustomFormat} from "../utils/formatDate";
+import sampleProfile from "../assets/user.png";
 
 const Comment = ({ comment, userId, onDelete }) => {
     const { author, date, content } = comment;
@@ -11,7 +13,7 @@ const Comment = ({ comment, userId, onDelete }) => {
                             <div className="box" style={{ background: "#BDBDBD" }}>
                                 <img
                                     className="authorProfile"
-                                    src={author.profileImg || "../assets/sample.png"}
+                                    src={author.profileImg || sampleProfile}
                                     alt={`${author.nickname}의 프로필`}
                                 />
                             </div>
@@ -20,7 +22,7 @@ const Comment = ({ comment, userId, onDelete }) => {
                     <div className="userInfo2">
                         <div className="author">
                             <p>{author.nickname}</p>
-                            <p>{date}</p>
+                            <p>{formatDateToCustomFormat(date)}</p>
                         </div>
                     </div>
 

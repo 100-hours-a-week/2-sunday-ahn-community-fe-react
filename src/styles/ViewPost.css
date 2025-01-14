@@ -4,7 +4,9 @@
     align-items: center;
     justify-content: center;
 }
-
+.comments{
+    margin-top: 15px;
+}
 .viewPostBox > main {
     width: 100%;
 }

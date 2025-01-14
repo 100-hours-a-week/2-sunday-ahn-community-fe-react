@@ -113,7 +113,7 @@ const ViewPost = () => {
                         userId={user?.userId}
                     />
                 )}
-                <CommentInputBox postId={postId} onCommentAdded={fetchPostData} />
+                <CommentInputBox userId = {user?.userId} postId={postId} onCommentAdded={fetchPostData} />
                 <div className="comments" id="commentsContainer">
                     {comments.length > 0 ? (
                         comments.map((comment) => (
