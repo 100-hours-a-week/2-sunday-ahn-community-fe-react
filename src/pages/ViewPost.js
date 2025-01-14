@@ -131,7 +131,11 @@ const ViewPost = () => {
             </main>
             {isPostModalOpen && (
                 <div className="modalPopup">
-                    <DeletePostModal postId={postId} onClose={closePostModal} onDeleted={() => navigate("/posts")} />
+                    <DeletePostModal 
+                        postId={postId} 
+                        onClose={closePostModal} 
+                        onDeleted={() => navigate("/posts")} 
+                    />
                 </div>
             )}
             {isCommentModalOpen && (

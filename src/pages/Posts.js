@@ -67,6 +67,7 @@ const Posts = () => {
         };
         loadData();
     }, []);
+    console.log("사용자 정보", user);
     return(
         <div className="postsBox">
                 <Lottie

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../components/css/FullPost.css";
 import Lottie from "react-lottie";
 import animationData from "../assets/likesLottie.json"; // 좋아요 애니메이션 JSON
@@ -17,7 +18,9 @@ const FullPost = ({ post, onDeletePost, userId }) => {
         views,
         commentsCnt,
     } = post;
-    console.log(post);
+    
+    const navigate = useNavigate();
+
     const [likesCount, setLikesCount] = useState(initialLikesCount);
     const [showLikeAnimation, setShowLikeAnimation] = useState(false);
     const [isLiked, setIsLiked] = useState(false); // 좋아요 색상 상태 관리
@@ -91,7 +94,7 @@ const FullPost = ({ post, onDeletePost, userId }) => {
                     </div>
                     {author.userId === userId && (
                         <div className="edit_postDetail">
-                            <button className="bnt" id="editPostBtn">
+                            <button className="bnt" id="editPostBtn" onClick={() => navigate(`/editPost?postId=${postId}`)}>
                                 <div className="postEditBtn">
                                     <p>
                                         <strong>수정</strong>

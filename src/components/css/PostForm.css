@@ -32,3 +32,31 @@
 input[type="file"]{
     font-family: 'Pretendard';
 }
+.customFileButton{
+    background: #4da1a9c3; 
+    border-radius: 16px;
+    width: 100px;
+    height: 30px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    color: #F6F4F0;
+    font-family: 'Pretendard';
+}
+#deleteFile{
+    background: #2e5077b1; 
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+}
+.labelBox{
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+}
+.fileName{
+    width: 380px;
+    height: 40px;
+    align-items: center;
+    display: flex; 
+}

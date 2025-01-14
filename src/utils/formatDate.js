@@ -10,3 +10,4 @@ export const formatDateToCustomFormat = (date) => {
 
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 };
+

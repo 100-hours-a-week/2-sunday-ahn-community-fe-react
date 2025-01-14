@@ -8,6 +8,7 @@ import PasswordBox from "../../components/PasswordBox";
 import CheckPasswordBox from "../../components/CheckPasswordBox";
 import NicknameBox from "../../components/NicknameBox";
 import { validateEmail, validatePassword, validateNickname } from "../../utils/validation";
+import { uploadProfile } from "../../utils/imageManager";
 
 const Regist = () => {
     const navigate = useNavigate();
@@ -77,38 +78,7 @@ const Regist = () => {
 
         let profileImageUrl = "";
         if (formData.profileImage) {
-            try {
-                // Pre-signed URL 요청
-                const presignedResponse = await fetch("http://localhost:3000/auth/uploadProfile", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        filename: formData.profileImage.name,
-                        contentType: formData.profileImage.type,
-                    }),
-                });
-    
-                if (!presignedResponse.ok) {
-                    throw new Error("Pre-signed URL 요청 실패");
-                }
-    
-                const { presignedUrl, fileUrl } = await presignedResponse.json();
-    
-                // S3에 파일 업로드
-                await fetch(presignedUrl, {
-                    method: "PUT",
-                    headers: { 
-                        "Content-Type": formData.profileImage.type,
-                    },
-                    body: formData.profileImage,
-                });
-                console.log("빋은url:", presignedUrl);
-                profileImageUrl = fileUrl; // 업로드 완료 후 URL 저장
-            } catch (error) {
-                console.error("프로필 이미지 업로드 실패:", error);
-                alert("이미지 업로드에 실패했습니다.");
-                return;
-            }
+            profileImageUrl = await uploadProfile(formData.profileImage);
         }
     
         try {
