@@ -1,5 +1,7 @@
+import { formatDateToCustomFormat } from "../utils/formatDate";
+import sampleProfile from "../assets/user.png";
 
-const Comment = ({ comment, userId, onDelete }) => {
+const Comment = ({ comment, userId, onEdit, onDelete }) => {
     const { author, date, content } = comment;
 
     return (
@@ -11,7 +13,7 @@ const Comment = ({ comment, userId, onDelete }) => {
                             <div className="box" style={{ background: "#BDBDBD" }}>
                                 <img
                                     className="authorProfile"
-                                    src={author.profileImg || "../assets/sample.png"}
+                                    src={author.profileImg || sampleProfile}
                                     alt={`${author.nickname}의 프로필`}
                                 />
                             </div>
@@ -20,14 +22,18 @@ const Comment = ({ comment, userId, onDelete }) => {
                     <div className="userInfo2">
                         <div className="author">
                             <p>{author.nickname}</p>
-                            <p>{date}</p>
+                            <p>{formatDateToCustomFormat(date)}</p>
                         </div>
                     </div>
 
                     {/* 작성자만 수정/삭제 버튼 표시 */}
                     {author.userId === userId && (
                         <div className="edit_postDetail">
-                            <button className="bnt" id="editCommentBtn">
+                            <button 
+                                className="bnt" 
+                                id="editCommentBtn" 
+                                onClick={() => onEdit(comment)}
+                            >
                                 <div className="postEditBtn">
                                     <p>
                                         <strong>수정</strong>

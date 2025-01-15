@@ -7,20 +7,56 @@
 }
 .postFormContent {
     width: 500px;
+    margin-bottom: 15px;
 }
+#submitBnt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .postFormContent input[type="text"], .postFormContent textarea{
     font-family: 'Pretendard';
     width: 100%;
     padding: 10px;
     font-size: 16px;
     color: #2E5077;
+    border: 1px solid #4da1a9c3;
     border-radius: 16px;
 }
 .postFormContent textarea{
-    border: 1px solid #F6F4F0;
+    border: 1px solid #4da1a9c3;
     resize: none; /* 크기 조정 비활성화 */
     box-sizing: border-box;
 }
 input[type="file"]{
     font-family: 'Pretendard';
+}
+.customFileButton{
+    background: #4da1a9c3; 
+    border-radius: 16px;
+    width: 100px;
+    height: 30px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    color: #F6F4F0;
+    font-family: 'Pretendard';
+}
+#deleteFile{
+    background: #2e5077b1; 
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+}
+.labelBox{
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+}
+.fileName{
+    width: 380px;
+    height: 40px;
+    align-items: center;
+    display: flex; 
 }
