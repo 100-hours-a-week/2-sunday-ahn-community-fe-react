@@ -234,12 +234,27 @@
 .profileSection {
     display: flex;
 }
+
+/* 댓글 프로필 이미지 스타일 */
 .profileSection .normalProfile {
     width: 36px;
     height: 36px;
     margin-right: 10px;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+    border-radius: 50%; 
+    background-color: #BDBDBD; 
 }
+
+.profileSection .normalProfile img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; /* 이미지 비율을 유지하며 영역에 꽉 채움 */
+    border-radius: 50%; /* 이미지를 원형으로 만듦 */
+}
+
 .commentAuthorInfoHeader {
     display: flex;
     width: 560px;
