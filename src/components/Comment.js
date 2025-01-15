@@ -1,7 +1,7 @@
-import {formatDateToCustomFormat} from "../utils/formatDate";
+import { formatDateToCustomFormat } from "../utils/formatDate";
 import sampleProfile from "../assets/user.png";
 
-const Comment = ({ comment, userId, onDelete }) => {
+const Comment = ({ comment, userId, onEdit, onDelete }) => {
     const { author, date, content } = comment;
 
     return (
@@ -29,7 +29,11 @@ const Comment = ({ comment, userId, onDelete }) => {
                     {/* 작성자만 수정/삭제 버튼 표시 */}
                     {author.userId === userId && (
                         <div className="edit_postDetail">
-                            <button className="bnt" id="editCommentBtn">
+                            <button 
+                                className="bnt" 
+                                id="editCommentBtn" 
+                                onClick={() => onEdit(comment)}
+                            >
                                 <div className="postEditBtn">
                                     <p>
                                         <strong>수정</strong>

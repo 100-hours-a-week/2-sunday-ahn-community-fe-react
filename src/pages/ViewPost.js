@@ -20,32 +20,11 @@ const ViewPost = () => {
     const [user, setUser] = useState(null); // 현재 사용자 정보
     const [post, setPost] = useState(null); // 게시물 정보
     const [comments, setComments] = useState([]); // 댓글 목록
+    const [editingComment, setEditingComment] = useState(null); // 수정 중인 댓글
 
     const [isPostModalOpen, setIsPostModalOpen] = useState(false); // 게시물 삭제 모달
     const [isCommentModalOpen, setIsCommentModalOpen] = useState(false); // 댓글 삭제 모달
     const [selectedComment, setSelectedComment] = useState(null); // 선택된 댓글 ID
-
-    // 스크롤바 너비 계산
-    const getScrollbarWidth = () => {
-        return window.innerWidth - document.documentElement.clientWidth;
-    };
-
-    // 모달 열릴 때 스크롤바 처리
-    useEffect(() => {
-        if (isPostModalOpen || isCommentModalOpen) {
-            const scrollbarWidth = getScrollbarWidth();
-            document.body.classList.add("modal-open");
-            document.body.style.paddingRight = `${scrollbarWidth}px`;
-        } else {
-            document.body.classList.remove("modal-open");
-            document.body.style.paddingRight = "";
-        }
-
-        return () => {
-            document.body.classList.remove("modal-open");
-            document.body.style.paddingRight = "";
-        };
-    }, [isPostModalOpen, isCommentModalOpen]);
 
     // 게시물 및 댓글 데이터 가져오기
     const fetchPostData = async () => {
@@ -84,6 +63,17 @@ const ViewPost = () => {
         loadData();
     }, [postId, navigate]);
 
+    // 댓글 수정 버튼 클릭
+    const handleEditComment = (comment) => {
+        setEditingComment(comment);
+    };
+
+    // 댓글 수정 완료 후 처리
+    const handleEditComplete = () => {
+        setEditingComment(null);
+        fetchPostData(); // 댓글 목록 다시 불러오기
+    };
+
     const openPostModal = () => setIsPostModalOpen(true);
     const closePostModal = () => setIsPostModalOpen(false);
 
@@ -113,7 +103,13 @@ const ViewPost = () => {
                         userId={user?.userId}
                     />
                 )}
-                <CommentInputBox userId = {user?.userId} postId={postId} onCommentAdded={fetchPostData} />
+                <CommentInputBox
+                    userId={user?.userId}
+                    postId={postId}
+                    editingComment={editingComment}
+                    onCommentAdded={fetchPostData}
+                    onEditComplete={handleEditComplete}
+                />
                 <div className="comments" id="commentsContainer">
                     {comments.length > 0 ? (
                         comments.map((comment) => (
@@ -121,6 +117,7 @@ const ViewPost = () => {
                                 key={comment.commentId}
                                 comment={comment}
                                 userId={user?.userId}
+                                onEdit={handleEditComment}
                                 onDelete={() => openCommentModal(comment.commentId)}
                             />
                         ))
