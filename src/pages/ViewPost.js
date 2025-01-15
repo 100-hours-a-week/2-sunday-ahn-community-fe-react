@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import TitleHeader from "../components/TItleHeader";
@@ -27,7 +27,7 @@ const ViewPost = () => {
     const [selectedComment, setSelectedComment] = useState(null); // 선택된 댓글 ID
 
     // 게시물 및 댓글 데이터 가져오기
-    const fetchPostData = async () => {
+    const fetchPostData = useCallback(async () => {
         try {
             const response = await fetch(`http://localhost:3000/posts/${postId}`, {
                 method: "GET",
@@ -45,7 +45,7 @@ const ViewPost = () => {
             console.error("게시물 데이터 로드 오류:", error);
             alert(error.message || "게시물을 불러오는 중 문제가 발생했습니다.");
         }
-    };
+    }, [postId]);
 
     // 세션 정보와 게시물 데이터 로드
     useEffect(() => {
@@ -61,7 +61,7 @@ const ViewPost = () => {
         };
 
         loadData();
-    }, [postId, navigate]);
+    }, [fetchPostData, navigate]);
 
     // 댓글 수정 버튼 클릭
     const handleEditComment = (comment) => {
