@@ -57,7 +57,7 @@ h4 {
     display: none;
 }
 /* 프로필 변경 버튼 */
-.editProfile {
+.editProfile{
     width: 52px;
     height: 27px;
     transform: translate(-50%, -50%);
@@ -71,7 +71,18 @@ h4 {
     border: 1px solid #FFFFFF;
     cursor: pointer;
 }
-
+.deleteProfile{
+    margin-left: 126px;
+    margin-top: 10px;
+    width: 100px;
+    height: 27px; 
+    color: #F6F4F0;
+    font-size: 15px;
+    border-radius: 25px;
+    background: #2e507792;
+    border: 1px solid #2e507700;
+    cursor: pointer;
+}
 /* 입력 필드 */
 .editUserInfobox.inputText {
     display: flex;

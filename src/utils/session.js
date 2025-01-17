@@ -1,10 +1,10 @@
 export const fetchUserSession = async () => {
     try {
-        // 세션 스토리지에서 사용자 정보 확인
-        const cachedUser = sessionStorage.getItem("user");
-        if (cachedUser) {
-            return JSON.parse(cachedUser);
-        }
+        // // 세션 스토리지에서 사용자 정보 확인
+        // const cachedUser = sessionStorage.getItem("user");
+        // if (cachedUser) {
+        //     return JSON.parse(cachedUser);
+        // }
 
         // 세션 스토리지에 정보가 없으면 서버에 요청
         const response = await fetch("http://localhost:3000/auth/userInfo", {

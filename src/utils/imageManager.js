@@ -37,13 +37,14 @@ export const uploadProfile = async (file) => {
 // userProfile이미지 삭제
 export const deleteProfile = async (imageUrl) => {
     try {
-        const encodedUrl = encodeURIComponent(imageUrl); // URL 인코딩
-        const response = await fetch(`http://localhost:3000/auth/deleteProfile?imageUrl=${encodedUrl}`, {
+        const response = await fetch(`http://localhost:3000/users/profileImage/${encodeURIComponent(imageUrl)}`, {
             method: "DELETE",
+            credentials: "include", // 인증 쿠키 포함
         });
 
         if (!response.ok) throw new Error("프로필 이미지 삭제 실패");
 
+        console.log("이미지 삭제함");
         return "";
     } catch (error) {
         console.error("프로필 이미지 삭제 오류:", error);
