@@ -17,9 +17,9 @@ const EditUserInfo = () => {
     const [user, setUser] = useState(null); // 현재 사용자 정보
 
     const [profileImage, setProfileImage] = useState(""); // 현재 표시되는 프로필 이미지
-    const [uploadedImage, setUploadedImage] = useState(""); // 새로 업로드된 이미지 URL
     
     const [nickname, setNickname] = useState(""); // 닉네임
+    const [newNickname, setNewNickname] = useState(""); // 바꾼 닉네임
     const [isNicknameValid, setIsNicknameValid] = useState(true); // 닉네임 유효성
 
     const openModal = () => setIsModalOpen(true);
@@ -32,6 +32,7 @@ const EditUserInfo = () => {
                 const userData = await fetchUserSession();
                 setUser(userData);
                 setNickname(userData?.nickname);
+                setNewNickname(userData?.nickname);
                 setProfileImage(userData?.profileImage || sampleProfile);
             } catch (error) {
                 console.error("사용자 정보 로드 오류:", error.message);
@@ -39,19 +40,17 @@ const EditUserInfo = () => {
             }
         };
         loadUserData();
-        console.log("세션의 user Profile : ", user?.profileImage);
     }, [navigate]);
 
     // 닉네임 변경 및 중복 체크
-    const handleNicknameChange = async (newNickname) => {
-        setNickname(newNickname);
-
-        if (newNickname !== user.nickname && newNickname.trim() !== "") {
+    const handleNicknameChange = async (inputNickname) => {
+        setNewNickname(inputNickname);
+        if ((inputNickname !== nickname) && (inputNickname.trim() !== "")) {
             try {
                 const response = await fetch("http://localhost:3000/auth/nickname", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ nickname: newNickname }),
+                    body: JSON.stringify({ nickname: inputNickname }),
                 });
 
                 if (response.ok) {
@@ -77,11 +76,11 @@ const EditUserInfo = () => {
         }
         try {
             // 닉네임 변경 처리
-            if (nickname !== user.nickname) {
-                const response = await fetch(`http://localhost:3000/users/nickname/${user.userId}`, {
+            if (nickname !== newNickname) {
+                const response = await fetch(`http://localhost:3000/users/nickname/${user?.userId}`, {
                     method: "PATCH",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ nickname }),
+                    body: JSON.stringify({ newNickname: newNickname }),
                     credentials: "include",
                 });
 
@@ -89,7 +88,7 @@ const EditUserInfo = () => {
             }
 
             alert("회원정보가 성공적으로 수정되었습니다.");
-            navigate("/posts");
+            // navigate("/posts");
 
         } catch (error) {
             console.error("회원정보 수정 오류:", error.message);
@@ -105,10 +104,11 @@ const EditUserInfo = () => {
         }
         try {
             const fileUrl = await uploadProfile(file);
-            setUploadedImage(fileUrl); // 업로드된 이미지 URL 저장
             if (fileUrl) {
                 // 프로필 이미지 변경 처리
-                await deleteProfile(profileImage);
+                if(profileImage!==sampleProfile){
+                    await deleteProfile(profileImage);
+                }
                 // 새 이미지 URL 저장 요청
                 const response = await fetch(`http://localhost:3000/users/profileImg/${user?.userId}`, {
                     method: "PUT",
@@ -150,8 +150,7 @@ const EditUserInfo = () => {
         const updatedUser = await response.json(); // 새 세션 정보 받기
         setUser(updatedUser.data); // 상태 동기화
 
-        setProfileImage(sampleProfile); // 기본 이미지로 
-        setUploadedImage(""); // 업로드된 이미지 URL 초기화
+        setProfileImage(sampleProfile); // 기본 이미지로
 
         alert("프로필 사진을 삭제하였습니다.");
         } catch (error) {
@@ -215,8 +214,8 @@ const EditUserInfo = () => {
                     </div>
                     <div className="editUserInfoContent">
                         <NicknameBox
-                            value={user?.nickname}
-                            originalValue={user?.nickname}
+                            value={newNickname}
+                            originalValue={nickname}
                             onChange={handleNicknameChange}
                         />
                     </div>

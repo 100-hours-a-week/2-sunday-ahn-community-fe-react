@@ -70,7 +70,6 @@ const Posts = () => {
         fetchPosts();
     }, [loadUserData, fetchPosts]);
 
-    console.log("사용자 정보", user);
     return(
         <div className="postsBox">
                 <Lottie

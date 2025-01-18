@@ -20,14 +20,3 @@ export const validateNickname = (nickname) => {
     if (/\s/.test(nickname)) return "*띄어쓰기를 없애주세요.";
     return ""; // 유효
 };
-
-// // 버튼 활성화
-// export function toggleSubmitButton(isEmailValid, isPasswordValid, isNicknameValid, registButton) {
-//     if (isEmailValid && isPasswordValid && isNicknameValid) {
-//         registButton.disabled = false;
-//         registButton.style.backgroundColor = "#2E5077";
-//     } else {
-//         registButton.disabled = true;
-//         registButton.style.backgroundColor = "#F6F4F0";
-//     }
-// }
