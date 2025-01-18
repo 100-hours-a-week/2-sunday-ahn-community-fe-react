@@ -2,13 +2,31 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import "../components/css/Modal.css";
 
-const WithdrawModal = ({ onClose }) => {
+const WithdrawModal = ({ userId, onClose }) => {
     const navigate = useNavigate();
-    
-    const confirmDelete = () => {
-        alert("회원 탈퇴가 완료되었습니다.");
-        onClose(); // 모달 닫기
-        navigate("/login");
+    const confirmDelete = async() => {
+        // 회원 탈퇴 함수
+        console.log("userId:", userId); // 전달된 userId 확인
+        try {
+            const response = await fetch(`http://localhost:3000/users/withdraw/${userId}`, {
+                method: "DELETE",
+                credentials: "include" // 세션 쿠키 포함
+            });
+
+            if (response.ok) {
+                alert("회원 탈퇴가 완료되었습니다.");
+                sessionStorage.removeItem("user"); // 클라이언트 세션 초기화
+                alert("회원 탈퇴가 완료되었습니다.");
+                onClose(); // 모달 닫기
+                navigate("/login"); // 로그인 페이지로 이동
+                
+            } else {
+                const error = await response.json();
+                alert(`회원 탈퇴 실패: ${error.message}`);
+            }
+        } catch (error) {
+            alert(`네트워크 오류 발생: ${error.message}`);
+        }
     };
 
     return (

@@ -235,7 +235,10 @@ const EditUserInfo = () => {
             </main>
             {isModalOpen && (
                 <div className="modalPopup">
-                    <WithdrawModal onClose={closeModal} />
+                    <WithdrawModal 
+                        userId={user?.userId} 
+                        onClose={closeModal} 
+                    />
                 </div>
             )}
         </div>
