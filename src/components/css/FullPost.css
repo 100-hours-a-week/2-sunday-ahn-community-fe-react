@@ -58,14 +58,24 @@
 }
 /* --------------- 게시물 --------------- */
 .user_detail .userInfo .nickname {
-    display: inline-block;
+    display: flex;
     margin: 0px;
+    width: 98%;
+    align-items: center;
+    justify-items: center;
     text-align: left;
+    justify-content: space-between;
+}
+.user_detail .userInfo .nickname #date {
+    display: block;
+    text-align: right;
+    align-items: center;
     justify-content: center;
+    margin: 0px;
+    width: 180px;
 }
 .user_detail .userInfo .nickname p {
-    display: inline;
-    margin-right: 20px;
+    display: block;
 }
 
 .content_detail{
