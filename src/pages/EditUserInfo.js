@@ -20,7 +20,6 @@ const EditUserInfo = () => {
     
     const [nickname, setNickname] = useState(""); // 닉네임
     const [newNickname, setNewNickname] = useState(""); // 바꾼 닉네임
-    const [isNicknameValid, setIsNicknameValid] = useState(true); // 닉네임 유효성
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
@@ -42,38 +41,10 @@ const EditUserInfo = () => {
         loadUserData();
     }, [navigate]);
 
-    // 닉네임 변경 및 중복 체크
-    const handleNicknameChange = async (inputNickname) => {
-        setNewNickname(inputNickname);
-        if ((inputNickname !== nickname) && (inputNickname.trim() !== "")) {
-            try {
-                const response = await fetch("http://localhost:3000/auth/nickname", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ nickname: inputNickname }),
-                });
-
-                if (response.ok) {
-                    setIsNicknameValid(true);
-                } else {
-                    setIsNicknameValid(false);
-                }
-            } catch (error) {
-                console.error("닉네임 중복 체크 오류:", error);
-                setIsNicknameValid(false);
-            }
-        } else {
-            setIsNicknameValid(true);
-        }
-    };
     // 회원정보 수정 처리
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (!isNicknameValid) {
-            alert("유효하지 않은 닉네임입니다.");
-            return;
-        }
         try {
             // 닉네임 변경 처리
             if (nickname !== newNickname) {
@@ -88,8 +59,7 @@ const EditUserInfo = () => {
             }
 
             alert("회원정보가 성공적으로 수정되었습니다.");
-            // navigate("/posts");
-
+            setNickname(newNickname);
         } catch (error) {
             console.error("회원정보 수정 오류:", error.message);
             alert("회원정보 수정 중 문제가 발생했습니다.");
@@ -216,7 +186,7 @@ const EditUserInfo = () => {
                         <NicknameBox
                             value={newNickname}
                             originalValue={nickname}
-                            onChange={handleNicknameChange}
+                            onChange={setNewNickname}
                         />
                     </div>
                 </div>
@@ -227,7 +197,6 @@ const EditUserInfo = () => {
                         value="수정하기"
                         onClick={handleSubmit}
                         disabled={
-                            !isNicknameValid || // 닉네임 유효성 검사 실패
                             !newNickname.trim() || // 닉네임이 비어 있음
                             nickname === newNickname // 닉네임 변경 사항 없음
                         }
