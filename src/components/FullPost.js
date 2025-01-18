@@ -128,6 +128,7 @@ const FullPost = ({ post, onDeletePost, userId }) => {
                 </div>
                 <div className="contentElement_detail">
                     <div className={`elements ${isLiked ? "liked" : ""}`}
+                        style={{ position: "relative"}}
                         id="likesCount" onClick={handleLikeClick}>
                         <p id="likesCount">{likesCount||0}</p>
                         <p>좋아요수</p>
@@ -136,7 +137,11 @@ const FullPost = ({ post, onDeletePost, userId }) => {
                                 options={defaultOptions}
                                 height={200}
                                 width={200}
-                                style={{ position: "absolute", top: "480px" }}
+                                style={{ 
+                                    position: "absolute",
+                                    left: "50%",
+                                    transform: "translate(-50%, -50%)",
+                                }}
                             />
                         )}
                     </div>
