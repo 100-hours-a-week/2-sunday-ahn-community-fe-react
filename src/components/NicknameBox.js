@@ -26,7 +26,6 @@ const NicknameBox = ({ value, onChange, originalValue }) => {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ nickname: value }),
                 });
-
                 if (!response.ok) {
                     const result = await response.json();
                     error = result.message || "*중복된 닉네임입니다.";
