@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import TitleHeader from "../components/TItleHeader";
@@ -26,7 +26,7 @@ const Posts = () => {
     };
 
     // 게시물 목록 로드
-    const fetchPosts = async () => {
+    const fetchPosts = useCallback(async () => {
         try {
             const response = await fetch("http://localhost:3000/posts", {
                 method: "GET",
@@ -35,39 +35,41 @@ const Posts = () => {
 
             if (response.status === 401) {
                 alert("로그인이 필요합니다.");
-                navigate("/login"); // 401 오류 시 로그인 페이지로 리다이렉션
-                return; // 더 이상 진행하지 않음
+                navigate("/login");
+                return;
             }
 
             if (!response.ok) throw new Error("게시물을 가져오는 데 실패했습니다.");
 
             const { data } = await response.json();
-            setPosts(data); // 게시물 상태 업데이트
+            setPosts(data);
         } catch (error) {
             console.error("게시물 로드 오류:", error);
         }
-    };
+    }, [navigate]);
 
     // 게시물 클릭 이벤트
     const handlePostClick = (postId) => {
         navigate(`/viewPost?postId=${postId}`);
     };
 
-    // 세션 정보 및 게시물 로드
+    // 사용자 세션 로드
+    const loadUserData = useCallback(async () => {
+        try {
+            const userData = await fetchUserSession();
+            setUser(userData); // 사용자 정보 상태 갱신
+        } catch (error) {
+            console.error("사용자 세션 로드 오류:", error);
+            navigate("/login");
+        }
+    }, [navigate]);
+
+    // 사용자 세션 및 게시물 데이터 로드
     useEffect(() => {
-        const loadData = async () => {
-            try {
-                const userData = await fetchUserSession();
-                setUser(userData);
-                await fetchPosts();
-            } catch (error) {
-                console.error(error.message);
-                navigate("/login"); // 세션 정보가 없으면 로그인 페이지로 이동
-            }
-        };
-        loadData();
-    }, []);
-    console.log("사용자 정보", user);
+        loadUserData();
+        fetchPosts();
+    }, [loadUserData, fetchPosts]);
+
     return(
         <div className="postsBox">
                 <Lottie
