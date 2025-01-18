@@ -226,7 +226,11 @@ const EditUserInfo = () => {
                         className="submitButton"
                         value="수정하기"
                         onClick={handleSubmit}
-                        disabled={!isNicknameValid || !nickname.trim()}
+                        disabled={
+                            !isNicknameValid || // 닉네임 유효성 검사 실패
+                            !newNickname.trim() || // 닉네임이 비어 있음
+                            nickname === newNickname // 닉네임 변경 사항 없음
+                        }
                     />
                     <button className="deleteMember" onClick={openModal}>
                         회원 탈퇴
