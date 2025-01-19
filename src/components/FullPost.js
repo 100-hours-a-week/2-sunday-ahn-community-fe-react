@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../components/css/FullPost.css";
 import Lottie from "react-lottie";
 import animationData from "../assets/likesLottie.json"; // 좋아요 애니메이션 JSON
-import {formatDateToCustomFormat} from "../utils/formatDate";
+import {formatDateToCustomFormat, formatNumber} from "../utils/formatDate";
 import sampleProfile from "../assets/user.png";
 
 const FullPost = ({ post, onDeletePost, userId }) => {
@@ -130,7 +130,7 @@ const FullPost = ({ post, onDeletePost, userId }) => {
                     <div className={`elements ${isLiked ? "liked" : ""}`}
                         style={{ position: "relative"}}
                         id="likesCount" onClick={handleLikeClick}>
-                        <p id="likesCount">{likesCount||0}</p>
+                        <p id="likesCount">{formatNumber(likesCount)||0}</p>
                         <p>좋아요수</p>
                         {showLikeAnimation && (
                             <Lottie
@@ -146,11 +146,11 @@ const FullPost = ({ post, onDeletePost, userId }) => {
                         )}
                     </div>
                     <div className="elements">
-                        <p id="viewsCount">{views||0}</p>
+                        <p id="viewsCount">{formatNumber(views)||0}</p>
                         <p>조회수</p>
                     </div>
                     <div className="elements">
-                        <p id="commentsCount">{commentsCnt||0}</p>
+                        <p id="commentsCount">{formatNumber(commentsCnt)||0}</p>
                         <p>댓글</p>
                     </div>
                 </div>

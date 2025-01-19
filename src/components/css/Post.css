@@ -30,8 +30,11 @@
     font-size: 10pt;
     justify-content: space-between;
 }
+.postElement .ele1 {
+    margin-left: 10px;
+}
 .postElement .ele1 p {
-    margin-left: 20px;
+    margin-left: 10px;
     text-align: left;
 }
 #date {

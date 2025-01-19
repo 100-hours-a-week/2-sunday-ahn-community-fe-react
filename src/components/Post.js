@@ -1,6 +1,6 @@
 import "./css/Post.css";
 import sampleImage from "../assets/user.png";
-import {formatDateToCustomFormat} from "../utils/formatDate";
+import {formatDateToCustomFormat, formatNumber} from "../utils/formatDate";
 
 
 const Post = ({ post, onClick }) => {
@@ -14,9 +14,9 @@ const Post = ({ post, onClick }) => {
                 </div>
                 <div class="postElement">
                     <div class="ele1">
-                        <p id="likes">좋아요 {likes || 0}</p>
-                        <p id="comments">댓글 {commentsCnt || 0}</p>
-                        <p id="views">조회수 {views || 0}</p>
+                        <p id="likes">좋아요 {formatNumber(likes) || 0}</p>
+                        <p id="comments">댓글 {formatNumber(commentsCnt) || 0}</p>
+                        <p id="views">조회수 {formatNumber(views) || 0}</p>
                     </div>
                     <p id="date">{formatDateToCustomFormat(date)}</p>
                 </div>

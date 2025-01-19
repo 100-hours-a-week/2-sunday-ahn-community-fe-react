@@ -11,3 +11,14 @@ export const formatDateToCustomFormat = (date) => {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 };
 
+// 숫자 포맷 함수
+export const formatNumber = (number) => {
+    if (number >= 100000) {
+        return `${Math.floor(number / 1000)}k`;
+    } else if (number >= 10000) {
+        return `${(number / 1000).toFixed(1)}k`;
+    } else if (number >= 1000) {
+        return `${(number / 1000).toFixed(1)}k`;
+    }
+    return number;
+};
