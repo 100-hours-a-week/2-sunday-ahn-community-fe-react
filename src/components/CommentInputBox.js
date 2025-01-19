@@ -30,8 +30,8 @@ const CommentInputBox = ({ userId, postId, editingComment, onCommentAdded, onEdi
 
         try {
             const url = isEditing
-                ? `http://localhost:3000/comments/${editingComment.commentId}`
-                : "http://localhost:3000/comments";
+                ? `http://${process.env.REACT_APP_API_URL}/api/comments/${editingComment.commentId}`
+                : `http://${process.env.REACT_APP_API_URL}/api/comments`;
 
             const method = isEditing ? "PUT" : "POST";
             const body = isEditing

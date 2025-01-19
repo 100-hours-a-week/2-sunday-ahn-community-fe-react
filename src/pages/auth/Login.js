@@ -21,7 +21,7 @@ const Login = () => {
 
     const handleLoginClick = async () => {
         try {
-            const response = await fetch("http://localhost:3000/auth/login", {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/auth/login`, {
                 method: "POST",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },

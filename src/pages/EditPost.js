@@ -24,7 +24,7 @@ const EditPost = () => {
                 setUser(userData);
 
                 // 게시글 정보 가져오기
-                const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+                const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/posts/${postId}`, {
                     method: "GET",
                     credentials: "include",
                 });
@@ -74,7 +74,7 @@ const EditPost = () => {
                 imageUrl,
             };
 
-            const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/posts/${postId}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(postData),

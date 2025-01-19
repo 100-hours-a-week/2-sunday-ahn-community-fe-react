@@ -7,7 +7,7 @@ export const fetchUserSession = async () => {
         // }
 
         // 세션 스토리지에 정보가 없으면 서버에 요청
-        const response = await fetch("http://localhost:3000/auth/userInfo", {
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/auth/userInfo`, {
             method: "GET",
             credentials: "include", // 세션 쿠키 포함
         });

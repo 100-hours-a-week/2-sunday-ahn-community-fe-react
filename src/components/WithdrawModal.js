@@ -8,7 +8,7 @@ const WithdrawModal = ({ userId, onClose }) => {
         // 회원 탈퇴 함수
         console.log("userId:", userId); // 전달된 userId 확인
         try {
-            const response = await fetch(`http://localhost:3000/users/withdraw/${userId}`, {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/users/withdraw/${userId}`, {
                 method: "DELETE",
                 credentials: "include" // 세션 쿠키 포함
             });

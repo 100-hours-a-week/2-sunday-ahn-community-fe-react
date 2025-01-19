@@ -1,5 +1,5 @@
 export const validateEmail = (email) => {
-    if (!email.trim() || email == "") return "*이메일을 입력해주세요.";
+    if (!email.trim() || email === "") return "*이메일을 입력해주세요.";
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(email)) return "*올바른 이메일 주소 형식을 입력해주세요.";
     return ""; // 유효

@@ -51,7 +51,7 @@ const FullPost = ({ post, onDeletePost, userId }) => {
 
     const toggleLikeAPI = async (postId) => {
         try {
-            const response = await fetch(`http://localhost:3000/posts/${postId}/likes`, {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/posts/${postId}/likes`, {
                 method: "GET", // 좋아요 요청
                 credentials: "include", // 세션 쿠키 포함
             });

@@ -44,7 +44,7 @@ const WritePost = () => {
                 imageUrl,
             };
 
-            const response = await fetch("http://localhost:3000/posts", {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/posts`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(postData),

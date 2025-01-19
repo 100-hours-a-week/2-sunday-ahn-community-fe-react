@@ -48,7 +48,7 @@ const EditUserInfo = () => {
         try {
             // 닉네임 변경 처리
             if (nickname !== newNickname) {
-                const response = await fetch(`http://localhost:3000/users/nickname/${user?.userId}`, {
+                const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/users/nickname/${user?.userId}`, {
                     method: "PATCH",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ newNickname: newNickname }),
@@ -80,7 +80,7 @@ const EditUserInfo = () => {
                     await deleteProfile(profileImage);
                 }
                 // 새 이미지 URL 저장 요청
-                const response = await fetch(`http://localhost:3000/users/profileImg/${user?.userId}`, {
+                const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/users/profileImg/${user?.userId}`, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ newProfileImg: fileUrl }),
@@ -108,7 +108,7 @@ const EditUserInfo = () => {
             }
 
         // 백엔드와 동기화
-        const response = await fetch(`http://localhost:3000/users/profileImg/${user?.userId}`, {
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/users/profileImg/${user?.userId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ newProfileImg: "" }), // 기본 이미지로 설정
