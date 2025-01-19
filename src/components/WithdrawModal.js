@@ -14,7 +14,6 @@ const WithdrawModal = ({ userId, onClose }) => {
             });
 
             if (response.ok) {
-                alert("회원 탈퇴가 완료되었습니다.");
                 sessionStorage.removeItem("user"); // 클라이언트 세션 초기화
                 alert("회원 탈퇴가 완료되었습니다.");
                 onClose(); // 모달 닫기
