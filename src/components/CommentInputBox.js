@@ -30,8 +30,8 @@ const CommentInputBox = ({ userId, postId, editingComment, onCommentAdded, onEdi
 
         try {
             const url = isEditing
-                ? `http://${process.env.REACT_APP_API_URL}/api/comments/${editingComment.commentId}`
-                : `http://${process.env.REACT_APP_API_URL}/api/comments`;
+                ? `http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/comments/${editingComment.commentId}`
+                : `http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/comments`;
 
             const method = isEditing ? "PUT" : "POST";
             const body = isEditing

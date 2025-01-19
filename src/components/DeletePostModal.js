@@ -5,7 +5,7 @@ const DeletePostModal = ({ postId, onClose, onDeleted }) => {
     // 게시물 삭제
     const deletePost = async () => {
         try {
-            const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/posts/${postId}`, {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/posts/${postId}`, {
                 method: "DELETE",
                 credentials: "include",
             });

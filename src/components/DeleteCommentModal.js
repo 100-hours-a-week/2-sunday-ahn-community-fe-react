@@ -5,7 +5,7 @@ const DeleteCommentModal = ({ onClose, commentId, onDeleted }) => {
     const confirmDelete = async () => {
         try {
             // 서버로 DELETE 요청 전송
-            const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/comments/${commentId}`, {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/comments/${commentId}`, {
                 method: "DELETE",
                 credentials: "include", // 인증 쿠키 포함
             });

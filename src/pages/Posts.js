@@ -28,7 +28,7 @@ const Posts = () => {
     // 게시물 목록 로드
     const fetchPosts = useCallback(async () => {
         try {
-            const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/posts`, {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/posts`, {
                 method: "GET",
                 credentials: "include",
             });
