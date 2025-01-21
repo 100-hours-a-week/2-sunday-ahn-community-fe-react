@@ -48,7 +48,7 @@ const EditPassword = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/users/password/${user?.userId}`, {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/users/password/${user?.userId}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ newPassword: password }),

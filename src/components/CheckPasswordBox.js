@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./css/InputBox.css";
 
 const CheckPasswordBox = ({ onCheckPassword, password, confirmPassword }) => {
@@ -6,7 +6,7 @@ const CheckPasswordBox = ({ onCheckPassword, password, confirmPassword }) => {
     const [touched, setTouched] = useState(false); // 입력 필드가 터치되었는지 확인
 
     // 유효성 검증 함수
-    const validateConfirmPassword = () => {
+    const validateConfirmPassword = useCallback(() => {
         if (!confirmPassword?.trim()) {
             setErrorMessage("*비밀번호를 한번 더 입력해주세요.");
         } else if (confirmPassword !== password) {
@@ -14,7 +14,7 @@ const CheckPasswordBox = ({ onCheckPassword, password, confirmPassword }) => {
         } else {
             setErrorMessage(""); // 에러 없음
         }
-    };
+    }, [password, confirmPassword]);
 
     const handleInputChange = (e) => {
         onCheckPassword(e.target.value);
@@ -30,7 +30,7 @@ const CheckPasswordBox = ({ onCheckPassword, password, confirmPassword }) => {
         if (touched) {
             validateConfirmPassword();
         }
-    }, [password, confirmPassword, touched]);
+    }, [validateConfirmPassword, touched]);
 
     return (
         <div className="inputField">

@@ -2,7 +2,7 @@
 export const uploadProfile = async (file) => {
     try {
         // Pre-signed URL 요청
-        const presignedResponse = await fetch("http://localhost:3000/auth/uploadProfile", {
+        const presignedResponse = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/auth/uploadProfile`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -37,7 +37,10 @@ export const uploadProfile = async (file) => {
 // userProfile이미지 삭제
 export const deleteProfile = async (imageUrl) => {
     try {
-        const response = await fetch(`http://localhost:3000/users/profileImage/${encodeURIComponent(imageUrl)}`, {
+        // URL 파싱: "profiles/" 이후의 경로만 추출
+        const key = new URL(imageUrl).pathname.split("profiles/").pop();
+
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/users/profileImage/${key}`, {
             method: "DELETE",
             credentials: "include", // 인증 쿠키 포함
         });
@@ -56,7 +59,7 @@ export const deleteProfile = async (imageUrl) => {
 // posts이미지 업로드
 export const uploadPostImage = async (file) => {
     try {
-        const presignedUrlResponse = await fetch("http://localhost:3000/posts/uploadPostImage", {
+        const presignedUrlResponse = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/posts/uploadPostImage`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -93,8 +96,10 @@ export const uploadPostImage = async (file) => {
 // posts이미지 삭제
 export const deletePostImage = async (imageUrl) => {
     try {
-        // 서버에 삭제 요청 보내기
-        const response = await fetch(`http://localhost:3000/posts/postImage/${encodeURIComponent(imageUrl)}`, {
+        // URL 파싱: "postImages/" 이후의 경로만 추출
+        const key = new URL(imageUrl).pathname.split("postImages/").pop();
+
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/posts/postImage/${key}`, {
             method: "DELETE",
             credentials: "include", // 인증 쿠키 포함
         });

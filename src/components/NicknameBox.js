@@ -21,7 +21,7 @@ const NicknameBox = ({ value, onChange, originalValue }) => {
         if (!error) {
             // 서버로 중복 검사 요청
             try {
-                const response = await fetch(`http://localhost:3000/auth/nickname`, {
+                const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/auth/nickname`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ nickname: value }),

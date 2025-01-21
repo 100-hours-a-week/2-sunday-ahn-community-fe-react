@@ -13,7 +13,7 @@ const ToggleProfile = ({ profileImage }) => {
 
     const handleLogout = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/users/logout`, {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/users/logout`, {
                 method: "POST",
                 credentials: "include", // 세션 쿠키 포함
             });

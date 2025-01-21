@@ -35,7 +35,7 @@ const Regist = () => {
     // 이메일 중복 검사 함수
     const checkEmailDuplicate = async (email) => {
         try {
-            const response = await fetch(`http://localhost:3000/auth/email`, {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/auth/email`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email }),
@@ -82,7 +82,7 @@ const Regist = () => {
         }
     
         try {
-            const response = await fetch("http://localhost:3000/auth/regist", {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/auth/regist`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

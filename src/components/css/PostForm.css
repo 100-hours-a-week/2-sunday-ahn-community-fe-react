@@ -35,8 +35,8 @@ input[type="file"]{
 .customFileButton{
     background: #4da1a9c3; 
     border-radius: 16px;
-    width: 100px;
-    height: 30px;
+    width: 90px;
+    height: 41px;
     display: flex; 
     align-items: center;
     justify-content: center;
@@ -45,18 +45,23 @@ input[type="file"]{
 }
 #deleteFile{
     background: #2e5077b1; 
-    width: 100px;
+    width: 30px;
     height: 30px;
-    margin-top: 10px;
+    margin-left: 10px;
 }
 .labelBox{
     display: flex; 
     align-items: center;
-    justify-content: space-between;
+    height: 45px;
 }
 .fileName{
-    width: 380px;
     height: 40px;
     align-items: center;
     display: flex; 
+    margin-left: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 16px;
+    border: 1px solid #4da1a9c3;
+    background-color: white;
 }

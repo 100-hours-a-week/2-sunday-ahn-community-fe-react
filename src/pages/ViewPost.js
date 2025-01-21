@@ -29,7 +29,7 @@ const ViewPost = () => {
     // 게시물 및 댓글 데이터 가져오기
     const fetchPostData = useCallback(async () => {
         try {
-            const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/posts/${postId}`, {
                 method: "GET",
                 credentials: "include",
             });

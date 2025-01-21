@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../components/css/PostForm.css";
 
 const PostForm = ({ onSubmit, initialData = {}, buttonText = "완료", showDeleteButton = false }) => {
+    
     const extractFileName = (url) => {
         if (!url) return "선택된 파일 없음"; // URL이 없을 경우 기본 메시지
         return url.split("/").pop(); // URL에서 파일 이름만 추출
@@ -87,7 +88,7 @@ const PostForm = ({ onSubmit, initialData = {}, buttonText = "완료", showDelet
                     required
                 />
             </div>
-            <div className="postFormContent">
+            <div className="postFormContent" >
                 {errorMessage && <div id="errorMessage" className="error">{errorMessage}</div>}
                 <p>이미지</p>
                 <div className="labelBox" style={{ display: "flex", alignItems: "center" }}>
@@ -101,20 +102,22 @@ const PostForm = ({ onSubmit, initialData = {}, buttonText = "완료", showDelet
                         onChange={handleFileChange}
                         style={{ display: "none" }} // 기본 파일 입력 숨기기
                     />
-                    <span className="fileName">
-                        {fileName}
-                    </span>
+                    {(fileName !== "선택된 파일 없음") && (
+                        <span className="fileName">
+                            {fileName}
+                            {showDeleteButton && (
+                                <label
+                                    type="button"
+                                    className="customFileButton"
+                                    id="deleteFile"
+                                    onClick={handleFileDelete}
+                                >
+                                    X
+                                </label>
+                            )}
+                        </span>
+                    )}
                 </div>
-                {showDeleteButton && (
-                    <label
-                        type="button"
-                        className="customFileButton"
-                        id="deleteFile"
-                        onClick={handleFileDelete}
-                    >
-                        파일 삭제
-                    </label>
-                )}
             </div>
             <div className="postFormContent" id="submitBnt">
                 <button type="submit" className="submitButton">{buttonText}</button>

@@ -1,14 +1,11 @@
-import { useNavigate } from "react-router-dom";
 import React from "react";
 import "../components/css/Modal.css";
 
 const DeletePostModal = ({ postId, onClose, onDeleted }) => {
-    const navigate = useNavigate();
-
     // 게시물 삭제
     const deletePost = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/posts/${postId}`, {
                 method: "DELETE",
                 credentials: "include",
             });

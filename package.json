@@ -6,14 +6,17 @@
     "aws-sdk": "^2.1692.0",
     "cra-template": "1.2.0",
     "lottie-web": "^5.12.2",
+    "pm2": "^5.4.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-lottie": "^1.2.10",
     "react-router-dom": "^7.1.1",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "serve": "^14.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
+    "devstart": "pm2 start 'npx serve -s build -l 2000' --name frontend-react",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
