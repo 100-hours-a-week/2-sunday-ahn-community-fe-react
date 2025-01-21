@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../components/css/PostForm.css";
 
 const PostForm = ({ onSubmit, initialData = {}, buttonText = "완료", showDeleteButton = false }) => {
+    
     const extractFileName = (url) => {
         if (!url) return "선택된 파일 없음"; // URL이 없을 경우 기본 메시지
         return url.split("/").pop(); // URL에서 파일 이름만 추출

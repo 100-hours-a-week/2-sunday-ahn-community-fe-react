@@ -54,18 +54,24 @@ const EditPost = () => {
 
     // 게시글 수정 처리
     const handlePostSubmit = async ({ title, content, file, isImageDeleted }) => {
-        let imageUrl = post.imageUrl;
+        let originUrl = post.imageUrl;
+        let imageUrl = originUrl;
+        console.log("originUrl : ", originUrl);
+        console.log("imageUrl : ", imageUrl);
+        console.log("file : ", file);
 
         // 이미지를 지웠다면 삭제 처리
-        if (isImageDeleted) {
-            imageUrl = await deletePostImage(imageUrl)
+        if (isImageDeleted && originUrl) {
+            imageUrl = await deletePostImage(originUrl)
         }
         // 이미지 업로드 처리
         if (file) {
+            if(originUrl){
+                await deletePostImage(originUrl);
+            }
             imageUrl = await uploadPostImage(file);
         }
-        console.log("수정요청하는 imageUrl : ", imageUrl);
-
+        console.log("imageUrl2 : ", imageUrl);
         // 게시글 수정 요청
         try {
             const postData = {

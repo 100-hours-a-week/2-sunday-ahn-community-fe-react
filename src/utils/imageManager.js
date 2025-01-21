@@ -37,7 +37,10 @@ export const uploadProfile = async (file) => {
 // userProfile이미지 삭제
 export const deleteProfile = async (imageUrl) => {
     try {
-        const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/users/profileImage/${encodeURIComponent(imageUrl)}`, {
+        // URL 파싱: "profiles/" 이후의 경로만 추출
+        const key = new URL(imageUrl).pathname.split("profiles/").pop();
+
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/users/profileImage/${key}`, {
             method: "DELETE",
             credentials: "include", // 인증 쿠키 포함
         });
@@ -93,8 +96,10 @@ export const uploadPostImage = async (file) => {
 // posts이미지 삭제
 export const deletePostImage = async (imageUrl) => {
     try {
-        // 서버에 삭제 요청 보내기
-        const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/posts/postImage/${encodeURIComponent(imageUrl)}`, {
+        // URL 파싱: "postImages/" 이후의 경로만 추출
+        const key = new URL(imageUrl).pathname.split("postImages/").pop();
+
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_BACKEND_PORT}/api/posts/postImage/${key}`, {
             method: "DELETE",
             credentials: "include", // 인증 쿠키 포함
         });

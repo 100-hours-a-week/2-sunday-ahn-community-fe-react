@@ -168,6 +168,7 @@ const EditUserInfo = () => {
                                 onChange={handleFileChange}
                             />
                         </div>
+                        {(profileImage !== sampleProfile) && (
                         <button
                             className="deleteProfile"
                             id="deleteProfile"
@@ -175,6 +176,7 @@ const EditUserInfo = () => {
                         >
                             사진 삭제
                         </button>
+                        )}
                     </div>
                     <div className="editUserInfoContent">
                         <p>이메일</p>
