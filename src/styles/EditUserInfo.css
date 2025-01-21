@@ -144,23 +144,41 @@ input[type="submit"] {
 }
 .finish {
     visibility: hidden;
-    width: 102px;
-    padding: 10px;
-    height: 46;
-    border-radius: 30px;          
-    background-color: #729fd2;    
-    font-size: 13pt;
-    color: white;  
-    transition: opacity 0.5s ease, visibility 0s 0.5s;
+    opacity: 0;
+    z-index: 9999;
+    position: fixed;
+    top: 50%; /* 화면의 중앙 위치 */
+    left: 50%; /* 화면의 중앙 위치 */
+    transform: translate(-50%, -50%); /* 정중앙으로 이동 */
+    transition: opacity 0.5s ease, visibility 0s 0.1s;
+    position: absolute;
 }
-/* 수정완료 버튼 */
-.finishBnt {
-    width: 102px;
-    height: 46;
-    padding: 10px;
-    border-radius: 30px;
+.finish.visible {
+    visibility: visible; 
+    opacity: 1; 
+    transition: opacity 0.5s ease;
 }
+.finish-background {
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    background-color: #F4F5F7; /* 원 배경 색상 */
+    border-radius: 50%;
+    z-index: -1; /* 다른 요소 뒤로 */
+    animation: scaleUp 0.5s ease-out forwards; /* 나타나는 애니메이션 */
+    text-align: center;
+    border: 3px solid #4da1a9b6;
 
+}
+/* Lottie 컨테이너 */
+#lottie {
+    width: 230px;
+    height: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
 /* ------------------ */
 .editPasswordBox {
     display: block;

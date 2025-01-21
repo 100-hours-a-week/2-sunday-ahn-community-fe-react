@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { fetchUserSession } from "../utils/session";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import lottie from "lottie-web";
+import animationData from "../assets/anim.json"; 
 import PasswordBox from "../components/PasswordBox";
 import TitleHeader from "../components/TItleHeader";
 import CheckPasswordBox from "../components/CheckPasswordBox";
@@ -14,6 +16,8 @@ const EditPassword = () => {
     const [password, setPassword] = useState(""); // 새 비밀번호
     const [confirmPassword, setConfirmPassword] = useState(""); // 확인 비밀번호
     const [isPasswordValid, setIsPasswordValid] = useState(false); // 비밀번호 유효성 검사
+
+    const [isToastVisible, setIsToastVisible] = useState(false); // 토스트 메시지 상태
 
     // 사용자 정보 로드
     useEffect(() => {
@@ -60,14 +64,36 @@ const EditPassword = () => {
                 throw new Error(errorData.message || "비밀번호 변경 실패");
             }
 
-            alert("비밀번호가 수정완료되었습니다.");
-            navigate("/posts");
+            // alert("비밀번호가 수정완료되었습니다.");
+            showToast();
         } catch (error) {
             console.error("비밀번호 변경 오류:", error.message);
             alert("비밀번호 변경 중 문제가 발생했습니다.");
         }
     };
-
+    const lottieContainer = useRef(null);
+    useEffect(() => {
+        if (lottieContainer.current) {
+            const animation = lottie.loadAnimation({
+                container: lottieContainer.current, // DOM 컨테이너
+                renderer: "svg",
+                loop: true,
+                autoplay: true,
+                animationData, // Lottie 애니메이션 데이터
+            });
+    
+            return () => {
+                animation.destroy(); // 컴포넌트 언마운트 시 정리
+            };
+        }
+    }, []);
+    // 토스트 메시지 표시
+    const showToast = () => {
+        setIsToastVisible(true);
+        setTimeout(() => {
+            setIsToastVisible(false);
+        }, 1000); // 1초 뒤에 숨기기
+    };
     return (
         <div className="editPasswordBox">
             <div className="editUserInfoHeaders">
@@ -78,6 +104,12 @@ const EditPassword = () => {
                 </div>
             </div>
             <h4><strong>비밀번호 수정</strong></h4>
+            <div className={`finish ${isToastVisible ? "visible" : ""}`}>
+                <div className="finish-background">
+                    <p><strong>수정완료!</strong></p>
+                </div> 
+                <div id="lottie" ref={lottieContainer}></div>
+            </div>
             <div>
                 <PasswordBox 
                     value={password} 
