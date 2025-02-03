@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import lottie from "lottie-web";
+import animationData from "../assets/anim.json"; 
 import NicknameBox from "../components/NicknameBox";
 import TitleHeader from "../components/TItleHeader";
 import ToggleProfile from "../components/ToggleProfile";
@@ -24,6 +26,8 @@ const EditUserInfo = () => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
+    const [isToastVisible, setIsToastVisible] = useState(false); // 토스트 메시지 상태
+
     // 사용자 정보 로드
     useEffect(() => {
         const loadUserData = async () => {
@@ -41,6 +45,15 @@ const EditUserInfo = () => {
         loadUserData();
     }, [navigate]);
 
+    // 토스트 메시지 표시
+    const showToast = () => {
+        setIsToastVisible(true);
+        setTimeout(() => {
+            setIsToastVisible(false);
+        }, 1000); // 1초 뒤에 숨기기
+    };
+    
+
     // 회원정보 수정 처리
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -57,8 +70,7 @@ const EditUserInfo = () => {
 
                 if (!response.ok) throw new Error("닉네임 업데이트 실패");
             }
-
-            alert("회원정보가 성공적으로 수정되었습니다.");
+            showToast();
             setNickname(newNickname);
         } catch (error) {
             console.error("회원정보 수정 오류:", error.message);
@@ -93,7 +105,7 @@ const EditUserInfo = () => {
 
                 setUser(updatedUser.data); // 상태 동기화
                 setProfileImage(fileUrl);
-                alert("프로필 사진을 수정하였습니다.");
+                showToast();
             }
         } catch (error) {
             console.error("프로필 이미지 업로드 오류:", error);
@@ -122,13 +134,32 @@ const EditUserInfo = () => {
 
         setProfileImage(sampleProfile); // 기본 이미지로
 
-        alert("프로필 사진을 삭제하였습니다.");
+        showToast();
         } catch (error) {
             console.error("프로필 이미지 삭제 오류:", error.message);
             alert("프로필 이미지 삭제 중 문제가 발생했습니다.");
         }
         return;
     };
+
+    const lottieContainer = useRef(null);
+
+    useEffect(() => {
+        if (lottieContainer.current) {
+            const animation = lottie.loadAnimation({
+                container: lottieContainer.current, // DOM 컨테이너
+                renderer: "svg",
+                loop: true,
+                autoplay: true,
+                animationData, // Lottie 애니메이션 데이터
+            });
+    
+            return () => {
+                animation.destroy(); // 컴포넌트 언마운트 시 정리
+            };
+        }
+    }, []);
+    
 
     return (
         <div className="editUserInfobox">
@@ -143,6 +174,12 @@ const EditUserInfo = () => {
                 <div className="inputText">
                     <div className="editUserInfoContent">
                         <h4><strong>회원정보 수정</strong></h4>
+                        <div className={`finish ${isToastVisible ? "visible" : ""}`}>
+                            <div className="finish-background">
+                                <p><strong>수정완료!</strong></p>
+                            </div> 
+                            <div id="lottie" ref={lottieContainer}></div>
+                        </div>
                         <p>프로필 사진</p>
                         <div className="profileContainer">
                             <div className="box2" id="profileBox">
