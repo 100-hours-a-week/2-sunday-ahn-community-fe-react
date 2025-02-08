@@ -1,3 +1,4 @@
+# 1. 빌드 단계
 FROM node:20.18.0 AS builder
 
 WORKDIR /app
@@ -16,11 +17,10 @@ FROM node:20.18.0 AS runtime
 
 WORKDIR /usr/src/app
 
-RUN npm install -g pm2 serve
+RUN npm install -g serve
 
 COPY --from=builder /app/build /usr/src/app/build
 
 EXPOSE 3000
 
-CMD ["pm2-runtime", "start", "--name", "frontend-react", "--", "npx", "serve", "-s", "build", "--listen", "0.0.0.0", "-p", "3000"]
-
+CMD ["serve", "-s", "build", "-l", "3000"]
