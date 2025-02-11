@@ -12,7 +12,7 @@ const TitleHeader = () => {
         <div>
             <div className="header" onClick={handleHeaderClick}>
                 <h1>
-                    SUNDAY의 <br /> 아무 말 대잔치
+                    ☀️SUN:DAILY☀️
                 </h1>
             </div>
         </div>
