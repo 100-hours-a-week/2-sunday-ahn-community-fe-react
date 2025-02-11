@@ -112,7 +112,7 @@ const Regist = () => {
                 <div className="box1">
                     <BackButton />
                     <h1>
-                        SUNDAY의 <br /> 아무 말 대잔치
+                        SUN:DAILY <br /> 아무 말 대잔치
                     </h1>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 .header{
     height: 104px;
     display: flex;
-    width: 250px;
+    width: 290px;
     align-items: center;
     justify-content: center; /* 텍스트를 가운데에 */
     position: relative;

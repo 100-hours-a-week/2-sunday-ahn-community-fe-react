@@ -25,7 +25,7 @@ const LoginHeader = () => {
         <div className="loginbox">
             <div ref={lottieContainer} className="lottie"></div>
             <div className="headerbox">
-                <h1>SUNDAY의</h1>
+                <h1>SUN:DAILY</h1>
                 <h1>아무 말 대잔치</h1>
             </div>
         </div>
